@@ -2,10 +2,11 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
+      collapse: section
       before: |
-        <li><a href="./">Engenharia Econômica H2</a></li>
+        <li><a href="./">VIABILIDADE FINANCEIRA - H2</a></li>
       after: |
-        <li><a href="https://ch2v.unifei.edu.br/" target="blank">**CH2V**</a></li>
+        <li><a href="https://ch2v.unifei.edu.br/" target="blank">CH2V</a></li>
     sharing: null
     download: ["pdf"]
 bookdown::pdf_book:
