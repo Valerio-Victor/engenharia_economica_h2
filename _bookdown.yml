@@ -1,4 +1,6 @@
+output_dir: "docs"
+book_filename: "Engenharia_Economica_H2"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "CAPÍTULO "
