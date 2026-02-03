@@ -4,7 +4,9 @@ author: "**Autor**: _[**Prof. Victor Valerio**](http://lattes.cnpq.br/1989464933
 date: "**Última Atualização**: `r format(Sys.Date(), '%d de %B de %Y')`"
 site: bookdown::bookdown_site
 documentclass: book
-link-citations: yes
+bibliography: ["packages.bib"]
+csl: "abnt_numerico.csl"
+link-citations: true
 github-repo: rstudio/bookdown-demo
 ---
 
