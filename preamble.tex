@@ -1,1 +1,37 @@
+% PREÂMBULO PARA O PPC EM BOOKDOWN
+
+% Codificação e fonte
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% Página e margens (A4, margens semelhantes a livro técnico)
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% Espaçamento entre linhas e parágrafos
+\usepackage{setspace}
+\onehalfspacing
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{6pt}
+
+% Títulos de capítulo sem a palavra "Chapter"
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries} % estilo do título
+  {\thechapter}               % só o número do capítulo (ex.: 1, 2, 3)
+  {1ex}
+  {}
+
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
+
+
+% Título do sumário em português
+\renewcommand{\contentsname}{SUMÁRIO}
+
+% Para tabela
 \usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{pdflscape}
