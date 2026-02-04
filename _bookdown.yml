@@ -4,3 +4,16 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: "CAPÍTULO "
+  label:
+    fig: 'Figura '
+    tab: 'Tabela '
+    eq: 'Equação '
+    thm: 'Teorema '
+    lem: 'Lema '
+    cor: 'Corolário '
+    prp: 'Proposição '
+    exr: 'Exercício '
+    exm: 'Exemplo '
+    proof: 'Prova '
+    remark: 'Nota '
+    solution: 'Solução '

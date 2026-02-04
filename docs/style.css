@@ -12,3 +12,21 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+
+.associacao {
+  border-left: 6px solid #2e7d32;
+  background-color: #e8f5e9;
+  padding: 1em;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
+
+.atencao {
+  border-left: 6px solid #0088b9;
+  background-color: #ccf6ff;
+  padding: 1em;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
+

@@ -51,35 +51,20 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 1em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -95,7 +80,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">VIABILIDADE FINANCEIRA - H2</a></li>
+<li><a href="./">VIABILIDADE FINANCEIRA - H₂</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> INTRODUÇÃO</a></li>
@@ -139,25 +124,42 @@ div.csl-indent {
 <div id="os-x-princípios-básicos" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Os X Princípios Básicos<a href="princípios-de-finanças.html#os-x-princ%C3%ADpios-b%C3%A1sicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Princípio 01 - O Dinheiro Muda de Valor ao Longo do Tempo</strong></p>
-<p>A base conceitual de toda a matemática financeira — e, por extensão, da análise de viabilidade financeira de projetos — fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: o dinheiro muda de valor ao longo do tempo. Como consequência lógica imediata desse princípio, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal <span class="citation">(<a href="#ref-Assaf2017">1</a>)</span>.</p>
-<p>Há diversas razões que explicam por que uma mesma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.</p>
-<p>Entretanto, a inflação não é a única razão para a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, ceteris paribus, preferível à postergação do consumo para o futuro. Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração do capital ao longo do tempo.</p>
+<p>A base conceitual da análise de viabilidade financeira de projetos fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: <strong>o dinheiro muda de valor ao longo do tempo</strong>.</p>
+<p>Como consequência lógica imediata, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal.</p>
+<p>Existem diversas razões que explicam por que uma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.</p>
+<p>Cumpre ressaltar que, no contexto brasileiro, as taxas de inflação assumem relevância significativa. Na Figura <a href="princípios-de-finanças.html#fig:ipca">2.1</a>, são apresentadas as taxas anuais recentes de inflação, medidas pelo Índice de Preços ao Consumidor Amplo (IPCA), indicador que monitora a variação de preços de uma cesta de bens e serviços representativa do consumo das famílias brasileiras com renda mensal compreendida entre 1 e 40 salários mínimos.</p>
+<div class="figure"><span style="display:block;" id="fig:ipca"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-3bacb5a8b4a099a08065" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3bacb5a8b4a099a08065">{"x":{"data":[{"x":[1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[22.41,9.5600000000000005,5.2199999999999998,1.6499999999999999,8.9399999999999995,5.9699999999999998,7.6699999999999999,12.529999999999999,9.3000000000000007,7.5999999999999996,5.6900000000000004,3.1400000000000001,4.46,5.9000000000000004,4.3099999999999996,5.9100000000000001,6.5,5.8399999999999999,5.9100000000000001,6.4100000000000001,10.67,6.29,2.9500000000000002,3.75,4.3099999999999996,4.5199999999999996,10.06,5.79,4.6200000000000001,4.8300000000000001,4.2599999999999998],"text":["Ano: 1995<br>Taxa: 22.41%","Ano: 1996<br>Taxa: 9.56%","Ano: 1997<br>Taxa: 5.22%","Ano: 1998<br>Taxa: 1.65%","Ano: 1999<br>Taxa: 8.94%","Ano: 2000<br>Taxa: 5.97%","Ano: 2001<br>Taxa: 7.67%","Ano: 2002<br>Taxa: 12.53%","Ano: 2003<br>Taxa: 9.30%","Ano: 2004<br>Taxa: 7.60%","Ano: 2005<br>Taxa: 5.69%","Ano: 2006<br>Taxa: 3.14%","Ano: 2007<br>Taxa: 4.46%","Ano: 2008<br>Taxa: 5.90%","Ano: 2009<br>Taxa: 4.31%","Ano: 2010<br>Taxa: 5.91%","Ano: 2011<br>Taxa: 6.50%","Ano: 2012<br>Taxa: 5.84%","Ano: 2013<br>Taxa: 5.91%","Ano: 2014<br>Taxa: 6.41%","Ano: 2015<br>Taxa: 10.67%","Ano: 2016<br>Taxa: 6.29%","Ano: 2017<br>Taxa: 2.95%","Ano: 2018<br>Taxa: 3.75%","Ano: 2019<br>Taxa: 4.31%","Ano: 2020<br>Taxa: 4.52%","Ano: 2021<br>Taxa: 10.06%","Ano: 2022<br>Taxa: 5.79%","Ano: 2023<br>Taxa: 4.62%","Ano: 2024<br>Taxa: 4.83%","Ano: 2025<br>Taxa: 4.26%"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(46,125,50,1)","opacity":1,"size":2.8346456692913389,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(46,125,50,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.8897637795275593,"color":"rgba(46,125,50,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":26.228310502283104,"r":7.3059360730593621,"b":40.182648401826491,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1993.5,2026.5],"tickmode":"array","ticktext":["2000","2010","2020"],"tickvals":[2000,2010,2020],"categoryorder":"array","categoryarray":["2000","2010","2020"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"y","title":{"text":"Anos","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.61199999999999988,23.448],"tickmode":"array","ticktext":["5%","10%","15%","20%"],"tickvals":[5,10,15,20],"categoryorder":"array","categoryarray":["5%","10%","15%","20%"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.6529680365296811,"tickwidth":0.33208800332088001,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088001,"zeroline":false,"anchor":"x","title":{"text":"IPCA Acumulado no Ano","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"a587d3e41fe":{"x":{},"y":{},"text":{},"type":"scatter"},"a584ce36f8":{"x":{},"y":{},"text":{}}},"cur_data":"a587d3e41fe","visdat":{"a587d3e41fe":["function (y) ","x"],"a584ce36f8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figura 2.1: Taxa de Inflação Anual Medida pelo IPCA
+</p>
+</div>
+<p>A análise desse índice permite interpretar o quanto uma unidade monetária perdeu poder de compra de um período para outro, evidenciando, em números, a variação do valor do dinheiro ao longo do tempo.</p>
+<p>Entretanto, a inflação não é a única razão pela qual considera-se a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, ceteris paribus<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, preferível à postergação do consumo para o futuro.</p>
+<p>Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração do capital ao longo do tempo.</p>
 <p>Seja em razão da variação do nível geral de preços — associada à inflação —, seja em decorrência da recompensa exigida pelos agentes econômicos para postergar o consumo — associada às preferências intertemporais —, torna-se necessário corrigir os valores monetários de um fluxo de caixa antes de proceder à sua análise econômica. Essa correção é realizada por meio da aplicação de uma taxa de juros, que permite expressar valores monetários observados em diferentes períodos em uma base temporal comum.</p>
-<p>A partir dessas considerações iniciais, emergem alguns dos conceitos fundamentais que compõem o vocabulário básico da análise de viabilidade financeira, os quais serão recorrentes ao longo deste capítulo.</p>
-<p>Fluxo de Caixa
-Conjunto de entradas e saídas de recursos monetários estimadas para diferentes momentos do tempo, associadas às etapas de implantação, operação e desativação de um projeto.</p>
-<p>Vida Útil do Projeto
+<p>Deste modo, a partir dessas considerações, emergem alguns dos conceitos fundamentais que compõem o vocabulário básico da análise de viabilidade financeira, os quais serão recorrentes ao longo deste capítulo.</p>
+<div class="associacao">
+<p>⚠️ <strong>CONCEITO: FLUXO DE CAIXA</strong><br />
+Conjunto de entradas e saídas de recursos monetários estimadas para diferentes momentos do tempo, associadas ao projeto.</p>
+<p>💡 <strong>ASSOCIAÇÃO DO FLUXO DE CAIXA A PROJETOS DE <span class="math inline">\(H_{2}\)</span></strong><br />
+às etapas de implantação, operação e desativação</p>
+<p>⚠️ <strong>CONCEITO: VIDA ÚTIL DO PROJETO</strong><br />
 Conceito associado à duração temporal do fluxo de caixa do empreendimento. Em projetos de engenharia, a vida útil do projeto é, em geral, definida a partir do período de operação do equipamento ou sistema considerado mais relevante para a atividade-fim do empreendimento.</p>
-<p>Taxa de Juros
+<p>💡 <strong>ASSOCIAÇÃO DA VIDA ÚTIL A PROJETOS DE <span class="math inline">\(H_{2}\)</span></strong><br />
+25 ANOS RELACIONADO À VIDA ÚTIL DO ELETROLISADOR</p>
+<p>⚠️ <strong>CONCEITO: TAXA DE JUROS</strong><br />
 De forma geral, o juro pode ser entendido como a remuneração associada ao uso de uma quantia monetária em uma operação distinta do consumo imediato. Ao longo deste material, essa remuneração será tratada como remuneração do capital, sendo o capital definido como o valor monetário empregado em uma operação financeira ou em um projeto de investimento. Assim, a taxa de juros pode ser compreendida como um coeficiente que expressa a remuneração do capital ao longo de um determinado intervalo de tempo.</p>
+</div>
 
 </div>
 </div>
-<h3>REFERÊNCIAS<a href="referências.html#refer%C3%AAncias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body" entry-spacing="1">
-<div id="ref-Assaf2017" class="csl-entry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">NETO, A. A. <strong><a href="https://www.grupogen.com.br/livro-matematica-financeira-edicao-universitaria-alexandre-assaf-neto-editora-atlas-9786559774425">Matemática financeira: edição universitária</a></strong>. 1. ed. [s.l.] GEN Atlas, 2017. </div>
-</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Expressão latina que significa “mantidas constantes todas as demais condições”. Esta expressão é muito utilizada em economia para indicar o efeito de uma variável analisada isoladamente, assumindo que todas as demais variáveis permanecem inalteradas<a href="princípios-de-finanças.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -197,7 +199,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["Engenharia_Economica_H2.pdf"],
+  "download": null,
   "search": {
     "engine": "fuse",
     "options": null
@@ -209,6 +211,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

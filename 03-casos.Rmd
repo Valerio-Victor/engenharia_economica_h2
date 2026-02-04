@@ -2,3 +2,17 @@
 
 
 
+
+::: {.atencao}
+⚠️ **ATENÇÃO**  
+O dinheiro muda de valor ao longo do tempo.
+:::
+
+
+::: {.associacao}
+💡 **ASSOCIAÇÃO**  
+O dinheiro muda de valor ao longo do tempo.
+:::
+
+
+

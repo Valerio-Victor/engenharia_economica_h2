@@ -20,22 +20,96 @@ Por se tratar de uma apostila de caráter aplicado, os conceitos apresentados ao
 
 **Princípio 01 - O Dinheiro Muda de Valor ao Longo do Tempo**
 
-A base conceitual de toda a matemática financeira — e, por extensão, da análise de viabilidade financeira de projetos — fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: o dinheiro muda de valor ao longo do tempo. Como consequência lógica imediata desse princípio, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal [@Assaf2017].
+A base conceitual da análise de viabilidade financeira de projetos fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: **o dinheiro muda de valor ao longo do tempo**. 
 
-Há diversas razões que explicam por que uma mesma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.
+Como consequência lógica imediata, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal.
 
-Entretanto, a inflação não é a única razão para a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, ceteris paribus, preferível à postergação do consumo para o futuro. Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração do capital ao longo do tempo.
+Existem diversas razões que explicam por que uma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.
+
+Cumpre ressaltar que, no contexto brasileiro, as taxas de inflação assumem relevância significativa. Na Figura \@ref(fig:ipca), são apresentadas as taxas anuais recentes de inflação, medidas pelo Índice de Preços ao Consumidor Amplo (IPCA), indicador que monitora a variação de preços de uma cesta de bens e serviços representativa do consumo das famílias brasileiras com renda mensal compreendida entre 1 e 40 salários mínimos.
+
+```{r ipca, fig.cap="Taxa de Inflação Anual Medida pelo IPCA", echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+
+ipca_ts <- sidrar::get_sidra(api = '/t/1737/n1/all/v/69/p/all/d/v69%202') %>%
+  janitor::clean_names()
+
+acum_ano <- ipca_ts %>%
+  dplyr::filter(variavel == 'IPCA - Variação acumulada no ano') %>%
+  dplyr::transmute(data = zoo::as.yearmon(mes_codigo, format = '%Y %m'),
+                   valor = round(valor, 6)) %>%
+  dplyr::mutate(mes = lubridate::month(data)) %>%
+  dplyr::filter(mes == 12) %>%
+  dplyr::filter(data >= zoo::as.yearmon(1995, 01)) %>%
+  dplyr::mutate(data = lubridate::year(data)) %>%
+  dplyr::select(data, valor) %>%
+  ggplot2::ggplot() +
+  
+  ggplot2::geom_point(mapping = ggplot2::aes(
+    x = data, y = valor,
+    group = 1,
+    text = paste0('Ano: ', data,
+                  '<br>Taxa: ', scales::number(valor,
+                                               decimal.mark = '.',
+                                               suffix = '%',
+                                               accuracy = 0.01))),
+    colour = '#2e7d32',
+    size = .75) +
+  
+   ggplot2::geom_line(mapping = ggplot2::aes(
+    x = data, y = valor,
+    group = 1,
+    text = paste0('Ano: ', data,
+                  '<br>Taxa: ', scales::number(valor,
+                                               decimal.mark = '.',
+                                               suffix = '%',
+                                               accuracy = 0.01))),
+    colour = '#2e7d32',
+    size = .5) +
+  
+  ggplot2::scale_y_continuous(labels = scales::number_format(suffix = '%')) +
+  ggplot2::labs(title = '',
+                x = 'Anos',
+                y = 'IPCA Acumulado no Ano',
+                caption = 'Dados: IBGE.') + 
+  ggplot2::theme_light()
+
+acum_ano  <- plotly::ggplotly(acum_ano, tooltip = 'text')
+
+acum_ano
+```
+
+
+A análise desse índice permite interpretar o quanto uma unidade monetária perdeu poder de compra de um período para outro, evidenciando, em números, a variação do valor do dinheiro ao longo do tempo.
+
+Entretanto, a inflação não é a única razão pela qual considera-se a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, ceteris paribus^[Expressão latina que significa “mantidas constantes todas as demais condições”. Esta expressão é muito utilizada em economia para indicar o efeito de uma variável analisada isoladamente, assumindo que todas as demais variáveis permanecem inalteradas], preferível à postergação do consumo para o futuro. 
+
+Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração do capital ao longo do tempo.
 
 Seja em razão da variação do nível geral de preços — associada à inflação —, seja em decorrência da recompensa exigida pelos agentes econômicos para postergar o consumo — associada às preferências intertemporais —, torna-se necessário corrigir os valores monetários de um fluxo de caixa antes de proceder à sua análise econômica. Essa correção é realizada por meio da aplicação de uma taxa de juros, que permite expressar valores monetários observados em diferentes períodos em uma base temporal comum.
 
-A partir dessas considerações iniciais, emergem alguns dos conceitos fundamentais que compõem o vocabulário básico da análise de viabilidade financeira, os quais serão recorrentes ao longo deste capítulo.
+Deste modo, a partir dessas considerações, emergem alguns dos conceitos fundamentais que compõem o vocabulário básico da análise de viabilidade financeira, os quais serão recorrentes ao longo deste capítulo.
 
-Fluxo de Caixa
-Conjunto de entradas e saídas de recursos monetários estimadas para diferentes momentos do tempo, associadas às etapas de implantação, operação e desativação de um projeto.
+::: {.associacao}
+⚠️ **CONCEITO: FLUXO DE CAIXA**  
+Conjunto de entradas e saídas de recursos monetários estimadas para diferentes momentos do tempo, associadas ao projeto.
 
-Vida Útil do Projeto
+
+💡 **ASSOCIAÇÃO DO FLUXO DE CAIXA A PROJETOS DE $H_{2}$**  
+às etapas de implantação, operação e desativação 
+
+
+⚠️ **CONCEITO: VIDA ÚTIL DO PROJETO**  
 Conceito associado à duração temporal do fluxo de caixa do empreendimento. Em projetos de engenharia, a vida útil do projeto é, em geral, definida a partir do período de operação do equipamento ou sistema considerado mais relevante para a atividade-fim do empreendimento.
 
-Taxa de Juros
+
+💡 **ASSOCIAÇÃO DA VIDA ÚTIL A PROJETOS DE $H_{2}$**  
+25 ANOS RELACIONADO À VIDA ÚTIL DO ELETROLISADOR
+
+
+⚠️ **CONCEITO: TAXA DE JUROS**  
 De forma geral, o juro pode ser entendido como a remuneração associada ao uso de uma quantia monetária em uma operação distinta do consumo imediato. Ao longo deste material, essa remuneração será tratada como remuneração do capital, sendo o capital definido como o valor monetário empregado em uma operação financeira ou em um projeto de investimento. Assim, a taxa de juros pode ser compreendida como um coeficiente que expressa a remuneração do capital ao longo de um determinado intervalo de tempo.
+:::
+
+
 
