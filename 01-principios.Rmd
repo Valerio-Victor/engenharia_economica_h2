@@ -70,8 +70,7 @@ acum_ano <- ipca_ts %>%
   ggplot2::scale_y_continuous(labels = scales::number_format(suffix = '%')) +
   ggplot2::labs(title = '',
                 x = 'Anos',
-                y = 'IPCA Acumulado no Ano',
-                caption = 'Dados: IBGE.') + 
+                y = 'IPCA Acumulado no Ano') + 
   ggplot2::theme_light()
 
 acum_ano  <- plotly::ggplotly(acum_ano, tooltip = 'text')

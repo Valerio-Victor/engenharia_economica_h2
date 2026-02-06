@@ -12,4 +12,34 @@ github-repo: rstudio/bookdown-demo
 
 # INTRODUÇÃO
 
+## Estrutura da Apostila
 
+Este material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global ,abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
+
+O Capítulo 2 é dedicado à apresentação dos princípios básicos de finanças, que constituem o arcabouço conceitual necessário para a análise de viabilidade financeira de projetos de produção de hidrogênio verde. Esses princípios são fundamentais, pois fornecem o vocabulário e a lógica econômica que sustentam as técnicas de avaliação financeira empregadas em projetos de engenharia. 
+
+Cumpre ressaltar que este capítulo não possui a pretensão de esgotar os temas da análise de viabilidade financeira, tampouco de aprofundar exaustivamente cada tópico apresentado. O objetivo é, antes, introduzir os conceitos amplamente utilizados na literatura e na prática profissional, servindo como uma base conceitual sólida para os capítulos subsequentes.
+
+Espera-se que, ao final do Capítulo 2, o leitor esteja familiarizado com o vocabulário essencial de finanças, sendo inclusive recomendada a construção de um dicionário próprio de conceitos, a fim de consolidar o aprendizado e facilitar consultas futuras. Com o intuito de tornar a leitura mais clara e orientada, esse capítulo utiliza marcadores específicos para destacar conteúdos relevantes. A interpretação desses marcadores deve seguir a lógica descrita a seguir.
+
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
+
+Este bloco é utilizado para apresentar definições e conceitos fundamentais necessários à compreensão da análise de viabilidade financeira.
+:::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+Este bloco aparece sempre de forma subsequente ao bloco de conceito e tem por finalidade estabelecer a ligação entre o conceito financeiro apresentado e sua aplicação em projetos de produção de hidrogênio.
+:::
+
+::: {.cuidado}
+⚠️ **CUIDADO!**
+
+Este bloco é empregado para alertar o leitor sobre erros conceituais ou práticas inadequadas frequentemente observadas em avaliações de viabilidade financeira e que não devem ser reproduzidas em projetos reais.
+:::
+
+A partir dos conceitos de finanças apresentados no Capítulo 2 e de suas respectivas associações com projetos de hidrogênio, o Capítulo 3 tem como objetivo apresentar um panorama atual do estado da arte do mercado de hidrogênio. Esse panorama é construído sob duas perspectivas complementares: a da demanda, relacionada aos principais usos do hidrogênio, e a da oferta, associada às diferentes rotas tecnológicas de produção, com ênfase no hidrogênio de baixo carbono.
+
+Por fim, o Capítulo 4 é dedicado à apresentação de estudos de caso de avaliação de viabilidade financeira, utilizando os parâmetros e conceitos discutidos nos capítulos anteriores. É importante destacar que esses estudos de caso possuem caráter didático e simplificado e não devem ser utilizados diretamente como suporte à tomada de decisão em projetos reais. Seu objetivo é orientar o leitor quanto à estrutura lógica de uma avaliação de viabilidade financeira, servindo como referência inicial para análises mais completas e detalhadas. Nesse capítulo, também são introduzidos aspectos práticos de implementação computacional, com destaque para o uso de planilhas eletrônicas (Excel) como ferramenta de apoio à análise.

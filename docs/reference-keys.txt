@@ -1,5 +1,6 @@
 fig:ipca
 introdução
+estrutura-da-apostila
 princípios-de-finanças
 os-x-princípios-básicos
 mercado-de-hidrogênio

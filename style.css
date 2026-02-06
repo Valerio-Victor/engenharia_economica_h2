@@ -14,7 +14,7 @@ pre code {
 }
 
 
-.associacao {
+.aplicacao {
   border-left: 6px solid #2e7d32;
   background-color: #e8f5e9;
   padding: 1em;
@@ -22,7 +22,7 @@ pre code {
   font-size: 0.95em;
 }
 
-.atencao {
+.conceito {
   border-left: 6px solid #0088b9;
   background-color: #ccf6ff;
   padding: 1em;
@@ -30,3 +30,10 @@ pre code {
   font-size: 0.95em;
 }
 
+.cuidado {
+  border-left: 6px solid #c95e5c;
+  background-color: #ffeaee;
+  padding: 1em;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
