@@ -12,6 +12,18 @@ github-repo: rstudio/bookdown-demo
 
 # INTRODUÇÃO
 
+O aquecimento global e as consequentes ocorrências de eventos extremos vêm se intensificando ao longo do tempo. Estima-se que, atualmente, a temperatura média global seja aproximadamente 1,1 ºC superior à observada no período pré-industrial. Como se sabe, uma das principais razões para essa realidade é a emissão de gases de efeito estufa (GEE), sendo o CO₂ um dos mais relevantes, responsável por mais de 50% dos efeitos das mudanças climáticas ao redor do mundo [@ipcc_2022; @acordo_paris; @fan_2022].
+
+Com a finalidade de conter as mudanças climáticas, durante a COP21, realizada em Paris (França), em 12 de dezembro de 2015, 195 países firmaram um tratado internacional juridicamente vinculativo sobre o tema, conhecido como Acordo de Paris. O objetivo principal consiste em evitar que a temperatura média global ultrapasse 2 ºC em relação ao nível pré-industrial, ressaltando-se ainda a necessidade de envidar esforços para limitar o aumento da temperatura média global a, no máximo, 1,5 ºC até o final do século, também em comparação ao nível pré-industrial[@ipcc_2022; @acordo_paris; @fan_2022].
+
+Como referência para o alcance desse objetivo, considera-se a necessidade de reduzir as emissões antropogênicas de CO₂ em aproximadamente 43% até 2030, em relação aos níveis de 2010, e de alcançar a neutralidade de carbono (emissões líquidas zero) até 2050. O supracitado contexto de neutralidade de carbono constitui, certamente, um grande desafio para a humanidade e, ao mesmo tempo, representa importantes oportunidades para o desenvolvimento e a difusão de tecnologias voltadas à descarbonização da economia [@ipcc_2022; @acordo_paris; @fan_2022].
+
+Diante desse contexto, pode-se observar uma tendência retomada nos últimos 10 anos, com maior intensidade nos últimos 5 anos, voltada à chamada “Economia do Hidrogênio”^[Expressão cunhada pela primeira vez em 1970 por engenheiros da General Motors nos Estados Unidos [@moreira_2025]], na qual se espera, conforme expresso por @moreira_2025, que as matrizes energéticas dos países sejam majoritariamente baseadas no elemento hidrogênio, em substituição ao carbono [@moreira_2025; @nasser_2023].
+
+Existe uma série de fatores que contribuem para essa expectativa. Em primeiro lugar, deve-se ressaltar que o hidrogênio é o elemento químico mais abundante no universo, constituindo 75% de sua massa total, e estando presente em 70% da superfície terrestre. Ressalta-se, contudo, que as moléculas de hidrogênio encontram-se disponíveis na natureza principalmente na forma de compostos com o carbono e na água [@moreira_2025; @nasser_2023].
+
+
+
 ## Estrutura da Apostila
 
 Este material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global ,abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
