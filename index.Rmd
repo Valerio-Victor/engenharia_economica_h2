@@ -22,6 +22,49 @@ Diante desse contexto, pode-se observar uma tendência retomada nos últimos 10 
 
 Existe uma série de fatores que contribuem para essa expectativa. Em primeiro lugar, deve-se ressaltar que o hidrogênio é o elemento químico mais abundante no universo, constituindo 75% de sua massa total, e estando presente em 70% da superfície terrestre. Ressalta-se, contudo, que as moléculas de hidrogênio encontram-se disponíveis na natureza principalmente na forma de compostos com o carbono e na água [@moreira_2025; @nasser_2023].
 
+Obviamente, não é apenas pela grande disponibilidade de hidrogênio que se avalia como benéfica a transição energética dos países a partir de sua maior utilização. De fato, o hidrogênio é um vetor energético limpo e multifuncional, podendo ser obtido por uma ampla gama de tecnologias e, ao mesmo tempo, constitui matéria-prima para diversos setores industriais. Uma vez produzido, o hidrogênio pode ser convertido em gás natural sintético, combustíveis líquidos e produtos químicos verdes. Além disso, pode ser armazenado quimicamente e reconvertido em eletricidade [@bhandari_2021; @correa_2022].
+
+Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,4 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de combustíveis fósseis, como coque e gasolina.
+
+Ademais, um dos principais motivos pelos quais se entende que a economia do hidrogênio é essencial para impulsionar a transição energética está relacionado aos primeiros passos dados pelos países no processo de descarbonização de suas economias, a clearly partir da inserção de fontes de energia renováveis (FER) na eletrificação. Como a natureza dessas fontes renováveis — como a fotovoltaica, a eólica e a biomassa — é, em muitos casos, sazonal, intermitente e descentralizada, pode-se verificar incompatibilidades entre a oferta e a demanda de eletricidade. À medida que a participação das energias renováveis aumenta nas matrizes energéticas nacionais, a gestão do sistema torna-se progressivamente mais complexa [@bhandari_2021; @correa_2022].
+
+Nesse sentido, o uso sinérgico do hidrogênio em conjunto com fontes renováveis de energia pode representar uma solução, na medida em que o hidrogênio pode ser armazenado e liberado quando necessário, preenchendo a lacuna entre as flutuações de oferta e demanda e, portanto, aumentando a confiabilidade do sistema. Essa aplicação também pode auxiliar no nivelamento de carga, na redução de picos e na regulação de frequência, melhorando, assim, a qualidade e a confiabilidade da energia fornecida [@bhandari_2021; @correa_2022].
+
+Sobre esse último aspecto, relacionado à sinergia entre a utilização de fontes renováveis de energia e a produção de hidrogênio para o equilíbrio entre oferta e demanda de eletricidade, é possível contextualizar as rotas de produção de hidrogênio. Conforme descrito por @rezaei_2022, para se obter o hidrogênio a partir da decomposição, existe uma variedade de tecnologias, envolvendo processos eletrolíticos, fotolíticos, químicos, biológicos e termoquímicos.
+
+Atualmente, a maior parte do hidrogênio produzido é obtida por meio de combustíveis fósseis, como hidrocarbonetos e carvão. Estudos indicam que algo entre 95% e 98% da produção de hidrogênio envolve o consumo de combustíveis fósseis, sendo cerca de 75% proveniente da reforma de gás natural e entre 20% e 23% da gaseificação de carvão, representando aproximadamente 83 milhões de toneladas de CO₂ emitidos. Nesses casos, mesmo que a captura e o armazenamento de CO₂ sejam tecnicamente viáveis e associados a produção de hidrogênio (chamado de hidrogênio azul) com a finalidade de minimizar as emissões decorrentes da produção de hidrogênio, estas podem ser superiores às da simples queima de combustíveis fósseis, ainda que o uso posterior do hidrogênio seja limpo [@hurtubia_2021; @correa_2022; @rezaei_2022]. 
+
+Com base em @fan_2022, na figura \@ref(fig:emissao) são apresentadas estimativas de emissão de CO₂ por matéria-prima utilizada para a produção.
+
+```{r emissao, fig.cap="Emissão de CO₂ na Produção de Hidrogênio", echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+library(ggplot2)
+
+emissao_co2 <- data.frame(
+  materia_prima = c("Gás Natural", "Petróleo", "Carvão"),
+  emissao = c(10, 12, 19) 
+)
+
+emissao_co2_graf <- emissao_co2 %>% 
+  dplyr::mutate(materia_prima = forcats::fct_reorder(materia_prima, emissao)) %>% 
+  ggplot() +
+  geom_col(aes(x = emissao, y = materia_prima,
+               group = 1,
+               text = paste0('Emissão de CO₂: ', emissao, ' Toneladas')),
+           fill = '#2e7d32') + 
+  labs(title = '',
+       y = 'Matéria-Prima',
+       x = 'Tonelada de CO₂ Emitido') + 
+  ggplot2::theme_light()
+
+emissao_co2_graf  <- plotly::ggplotly(emissao_co2_graf, tooltip = 'text')
+
+emissao_co2_graf
+```
+
+
+
+
 
 
 ## Estrutura da Apostila

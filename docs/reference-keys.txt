@@ -1,3 +1,4 @@
+fig:emissao
 fig:ipca
 introdução
 estrutura-da-apostila
