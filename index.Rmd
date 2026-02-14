@@ -12,6 +12,8 @@ github-repo: rstudio/bookdown-demo
 
 # INTRODUÇÃO
 
+## O Desafio da Economia do H₂
+
 O aquecimento global e as consequentes ocorrências de eventos extremos vêm se intensificando ao longo do tempo. Estima-se que, atualmente, a temperatura média global seja aproximadamente 1,1 ºC superior à observada no período pré-industrial. Como se sabe, uma das principais razões para essa realidade é a emissão de gases de efeito estufa (GEE), sendo o CO₂ um dos mais relevantes, responsável por mais de 50% dos efeitos das mudanças climáticas ao redor do mundo [@ipcc_2022; @acordo_paris; @fan_2022].
 
 Com a finalidade de conter as mudanças climáticas, durante a COP21, realizada em Paris (França), em 12 de dezembro de 2015, 195 países firmaram um tratado internacional juridicamente vinculativo sobre o tema, conhecido como Acordo de Paris. O objetivo principal consiste em evitar que a temperatura média global ultrapasse 2 ºC em relação ao nível pré-industrial, ressaltando-se ainda a necessidade de envidar esforços para limitar o aumento da temperatura média global a, no máximo, 1,5 ºC até o final do século, também em comparação ao nível pré-industrial[@ipcc_2022; @acordo_paris; @fan_2022].
@@ -20,11 +22,59 @@ Como referência para o alcance desse objetivo, considera-se a necessidade de re
 
 Diante desse contexto, pode-se observar uma tendência retomada nos últimos 10 anos, com maior intensidade nos últimos 5 anos, voltada à chamada “Economia do Hidrogênio”^[Expressão cunhada pela primeira vez em 1970 por engenheiros da General Motors nos Estados Unidos [@moreira_2025]], na qual se espera, conforme expresso por @moreira_2025, que as matrizes energéticas dos países sejam majoritariamente baseadas no elemento hidrogênio, em substituição ao carbono [@moreira_2025; @nasser_2023].
 
-Existe uma série de fatores que contribuem para essa expectativa. Em primeiro lugar, deve-se ressaltar que o hidrogênio é o elemento químico mais abundante no universo, constituindo 75% de sua massa total, e estando presente em 70% da superfície terrestre. Ressalta-se, contudo, que as moléculas de hidrogênio encontram-se disponíveis na natureza principalmente na forma de compostos com o carbono e na água [@moreira_2025; @nasser_2023].
+Existe uma série de fatores que contribuem para essa expectativa. Em primeiro lugar, deve-se ressaltar que o hidrogênio é o elemento químico mais abundante no universo, constituindo 75% de sua massa total, e estando presente em 70% da superfície terrestre. Ressalta-se, contudo, que as moléculas de hidrogênio encontram-se disponíveis na natureza principalmente na forma de compostos com o carbono e na água [@moreira_2025; @nasser_2023]. Assim como apresentado em @moreira_2025, as principais caracterísicas do hidrogênio podem ser assim sintetizadas:
+
+- Terceiro elemento mais abundante na Terra;
+- Incolor, Inodoro, Insípido;
+- Baixa densidade 0,0899 g/l;
+- Inflamabilidade de 4,1 a 74,2 % de H₂ em volume de ar seco (temperatura de ignição 565-579°C).
+
 
 Obviamente, não é apenas pela grande disponibilidade de hidrogênio que se avalia como benéfica a transição energética dos países a partir de sua maior utilização. De fato, o hidrogênio é um vetor energético limpo e multifuncional, podendo ser obtido por uma ampla gama de tecnologias e, ao mesmo tempo, constitui matéria-prima para diversos setores industriais. Uma vez produzido, o hidrogênio pode ser convertido em gás natural sintético, combustíveis líquidos e produtos químicos verdes. Além disso, pode ser armazenado quimicamente e reconvertido em eletricidade [@bhandari_2021; @correa_2022].
 
-Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,4 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de combustíveis fósseis, como coque e gasolina.
+Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,9 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de combustíveis fósseis, como coque e gasolina. Uma síntese dessa comparação é apresentada na \@ref(fig:podercalorifico) [@moreira_2025].
+
+```{r podercalorifico, fig.cap="Comparação entre Densidades Energéticas", echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+library(ggplot2)
+
+poder_calorifico <- data.frame(
+  combustivel = c("Hidrogênio", 
+                  "Gasolina",
+                  "Gás Natural", 
+                  "Metano",
+                  "Metanol", 
+                  "Etanol",
+                  "Querosene", 
+                  "Carvão",
+                  "Madeira"),
+  pc = c(141.90,
+         47.27,
+         47.21,
+         55.55,
+         22.69,
+         29.70,
+         46.00,
+         31.38,
+         17.12))
+
+poder_calorifico <- poder_calorifico %>% 
+  dplyr::mutate(combustivel = forcats::fct_reorder(combustivel, pc)) %>% 
+  ggplot() +
+  geom_col(aes(x = pc, y = combustivel,
+               group = 1,
+               text = paste0('Poder Calorífico: ', pc, ' MJ/kg, 25°C')),
+           fill = '#2e7d32',
+           width = 0.9) + 
+  labs(title = '',
+       y = 'Combustível',
+       x = '(MJ/kg, 25°C)') + 
+  ggplot2::theme_light()
+
+poder_calorifico  <- plotly::ggplotly(poder_calorifico, tooltip = 'text')
+
+poder_calorifico
+```
 
 Ademais, um dos principais motivos pelos quais se entende que a economia do hidrogênio é essencial para impulsionar a transição energética está relacionado aos primeiros passos dados pelos países no processo de descarbonização de suas economias, a clearly partir da inserção de fontes de energia renováveis (FER) na eletrificação. Como a natureza dessas fontes renováveis — como a fotovoltaica, a eólica e a biomassa — é, em muitos casos, sazonal, intermitente e descentralizada, pode-se verificar incompatibilidades entre a oferta e a demanda de eletricidade. À medida que a participação das energias renováveis aumenta nas matrizes energéticas nacionais, a gestão do sistema torna-se progressivamente mais complexa [@bhandari_2021; @correa_2022].
 
@@ -51,7 +101,8 @@ emissao_co2_graf <- emissao_co2 %>%
   geom_col(aes(x = emissao, y = materia_prima,
                group = 1,
                text = paste0('Emissão de CO₂: ', emissao, ' Toneladas')),
-           fill = '#2e7d32') + 
+           fill = '#2e7d32',
+           width = 0.4) + 
   labs(title = '',
        y = 'Matéria-Prima',
        x = 'Tonelada de CO₂ Emitido') + 

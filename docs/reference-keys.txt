@@ -1,8 +1,11 @@
+fig:podercalorifico
 fig:emissao
 fig:ipca
 introdução
+o-desafio-da-economia-do-h₂
 estrutura-da-apostila
 princípios-de-finanças
+a-técnica-de-análise-financeira
 os-x-princípios-básicos
 mercado-de-hidrogênio
 estudos-de-caso

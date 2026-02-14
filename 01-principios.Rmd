@@ -1,5 +1,7 @@
 # PRINCÍPIOS DE FINANÇAS
 
+## A Técnica de Análise Financeira
+
 A análise de viabilidade financeira constitui um componente indissociável do processo de concepção, avaliação e implementação de projetos de engenharia. Ainda que um empreendimento apresente plena viabilidade técnica, contando com disponibilidade de tecnologias adequadas, domínio dos processos produtivos e conformidade com critérios normativos e operacionais, sua materialização concreta depende, em maior medida, da comprovação de sua viabilidade financeira. 
 
 Nesse sentido, pode-se afirmar que a viabilidade técnica seja condição necessária, mas não condição suficiente para a implementação de um projeto de engenharia, uma vez que a decisão de implementação do empreendimento está condicionada à capacidade desse de remunerar adequadamente o recurso monetário empregado, compatibilizando retorno esperado e respectivo nível de risco.
