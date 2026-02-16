@@ -22,13 +22,14 @@ Por se tratar de uma apostila de caráter aplicado, os conceitos apresentados ao
 
 **Princípio 01 - O Dinheiro Muda de Valor ao Longo do Tempo**
 
-A base conceitual da análise de viabilidade financeira de projetos fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: **o dinheiro muda de valor ao longo do tempo**. 
+A base conceitual da análise de viabilidade financeira de projetos fundamenta-se em um princípio elementar que orienta o conjunto de técnicas desenvolvidas neste capítulo: **o dinheiro muda de valor ao longo do tempo** [@assaf_2017]. 
 
-Como consequência lógica imediata, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal.
+Como consequência lógica imediata, tem-se que quantias monetárias expressas em diferentes períodos de tempo não são diretamente comparáveis. Para que tal comparação seja possível, torna-se necessário realizar um procedimento de correção do valor do dinheiro, de modo a expressar todas as quantias monetárias em uma mesma referência temporal [@assaf_2017].
 
-Existem diversas razões que explicam por que uma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.
+Existem diversas razões que explicam por que uma unidade monetária não preserva seu valor ao longo do tempo. Uma das explicações mais recorrentes na literatura econômica é o fenômeno da inflação, compreendido como o aumento generalizado e persistente do nível de preços da economia [@krugman_2016]. À medida que os preços de bens e serviços se elevam ao longo do tempo, o poder de compra associado a uma mesma unidade monetária se reduz. Essa perda de poder de compra constitui, portanto, uma das formas pelas quais se manifesta a alteração do valor do dinheiro ao longo do tempo.
 
 Cumpre ressaltar que, no contexto brasileiro, as taxas de inflação assumem relevância significativa. Na Figura \@ref(fig:ipca), são apresentadas as taxas anuais recentes de inflação, medidas pelo Índice de Preços ao Consumidor Amplo (IPCA), indicador que monitora a variação de preços de uma cesta de bens e serviços representativa do consumo das famílias brasileiras com renda mensal compreendida entre 1 e 40 salários mínimos.
+
 
 ```{r ipca, fig.cap="Taxa de Inflação Anual Medida pelo IPCA", echo=FALSE, message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
@@ -83,34 +84,126 @@ acum_ano
 
 A análise desse índice permite interpretar o quanto uma unidade monetária perdeu poder de compra de um período para outro, evidenciando, em números, a variação do valor do dinheiro ao longo do tempo.
 
-Entretanto, a inflação não é a única razão pela qual considera-se a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, ceteris paribus^[Expressão latina que significa “mantidas constantes todas as demais condições”. Esta expressão é muito utilizada em economia para indicar o efeito de uma variável analisada isoladamente, assumindo que todas as demais variáveis permanecem inalteradas], preferível à postergação do consumo para o futuro. 
+Entretanto, a inflação não é a única razão pela qual considera-se a variação do valor do dinheiro ao longo do tempo. Existe também uma explicação de natureza comportamental, relacionada às preferências intertemporais dos agentes econômicos. Em termos gerais, a possibilidade de consumir ou adquirir bens no presente é, _ceteris paribus_^[Expressão latina que significa “mantidas constantes todas as demais condições”. Esta expressão é muito utilizada em economia para indicar o efeito de uma variável analisada isoladamente, assumindo que todas as demais variáveis permanecem inalteradas], preferível à postergação do consumo para o futuro. 
 
-Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração do capital ao longo do tempo.
+Dessa forma, postergar o uso de uma unidade monetária no presente implica um sacrifício, o qual deve ser compensado por um valor adicional no futuro. Esse mecanismo de compensação está na origem do conceito de remuneração de um valor monetário investido em um determinado período de tempo.
 
-Seja em razão da variação do nível geral de preços — associada à inflação —, seja em decorrência da recompensa exigida pelos agentes econômicos para postergar o consumo — associada às preferências intertemporais —, torna-se necessário corrigir os valores monetários de um fluxo de caixa antes de proceder à sua análise econômica. Essa correção é realizada por meio da aplicação de uma taxa de juros, que permite expressar valores monetários observados em diferentes períodos em uma base temporal comum.
+Dessa forma, o valor monetário aplicado inicialmente em um empreendimento passa a ser reconhecido, no âmbito da análise financeira, como capital. Em projetos de investimento, esse capital corresponde ao montante de recursos necessários para viabilizar a implantação da iniciativa, abrangendo, por exemplo, aquisição de equipamentos, construção de instalações, infraestrutura, sistemas auxiliares e demais dispêndios indispensáveis para que o projeto entre em operação.
 
-Deste modo, a partir dessas considerações, emergem alguns dos conceitos fundamentais que compõem o vocabulário básico da análise de viabilidade financeira, os quais serão recorrentes ao longo deste capítulo.
+Na literatura especializada e na prática profissional, esse conjunto de investimentos iniciais é usualmente denominado CAPEX, sigla derivada da expressão em inglês Capital Expenditure, que pode ser traduzida como dispêndio de capital ou investimento em capital. Trata-se, portanto, do esforço financeiro realizado no presente com a expectativa de geração de benefícios econômicos ao longo do tempo.
 
-::: {.associacao}
-⚠️ **CONCEITO: FLUXO DE CAIXA**  
-Conjunto de entradas e saídas de recursos monetários estimadas para diferentes momentos do tempo, associadas ao projeto.
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
 
-
-💡 **ASSOCIAÇÃO DO FLUXO DE CAIXA A PROJETOS DE $H_{2}$**  
-às etapas de implantação, operação e desativação 
-
-
-⚠️ **CONCEITO: VIDA ÚTIL DO PROJETO**  
-Conceito associado à duração temporal do fluxo de caixa do empreendimento. Em projetos de engenharia, a vida útil do projeto é, em geral, definida a partir do período de operação do equipamento ou sistema considerado mais relevante para a atividade-fim do empreendimento.
-
-
-💡 **ASSOCIAÇÃO DA VIDA ÚTIL A PROJETOS DE $H_{2}$**  
-25 ANOS RELACIONADO À VIDA ÚTIL DO ELETROLISADOR
-
-
-⚠️ **CONCEITO: TAXA DE JUROS**  
-De forma geral, o juro pode ser entendido como a remuneração associada ao uso de uma quantia monetária em uma operação distinta do consumo imediato. Ao longo deste material, essa remuneração será tratada como remuneração do capital, sendo o capital definido como o valor monetário empregado em uma operação financeira ou em um projeto de investimento. Assim, a taxa de juros pode ser compreendida como um coeficiente que expressa a remuneração do capital ao longo de um determinado intervalo de tempo.
+O **CAPEX (Capital Expenditure)** corresponde ao volume de recursos financeiros aplicados na implantação de um empreendimento. Representa o investimento realizado no presente para adquirir ativos e estruturar a capacidade produtiva que permitirá a geração de resultados econômicos no futuro.
 :::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+Em projetos de produção de hidrogênio verde por eletrólise alimentada por energia fotovoltaica, o CAPEX envolve, por exemplo, a aquisição do eletrolisador, dos módulos fotovoltaicos, inversores, sistemas de compressão, armazenamento, terrenos, obras civis e toda a infraestrutura necessária para que a planta possa iniciar sua operação e produzir hidrogênio verde.
+:::
+
+**Princípio 02 – O Valor de um Empreendimento é Baseado no Fluxo de Caixa Futuro**
+
+Como discutido anteriormente, ao realizar um investimento o agente econômico abdica do consumo presente, assumindo inclusive o risco de perda de poder de compra em decorrência da inflação ou da renúncia à utilidade que poderia ser obtida por meio da aquisição imediata de bens e serviços. Essa decisão somente se justifica pela expectativa de obtenção de benefícios econômicos distribuídos ao longo do tempo.
+
+A própria noção de benefícios futuros implica reconhecer que o empreendimento permanecerá em operação durante um determinado horizonte temporal. Esse intervalo corresponde ao período no qual os ativos produtivos estarão gerando resultados e é usualmente denominado vida útil do projeto.
+
+Durante a vida útil, o empreendimento registrará entradas e saídas de recursos monetários em diferentes momentos. Os valores recebidos pela venda de bens ou serviços constituem as receitas, também chamadas de entradas de caixa. Por sua vez, os dispêndios necessários para manter o funcionamento do sistema produtivo, tais como gastos com energia, insumos, mão de obra, reposições e serviços, configuram os custos de operação e manutenção, frequentemente tratados como saídas de caixa. Na literatura especializada, esse conjunto de gastos recorrentes é usualmente denominado OPEX, sigla do inglês Operational Expenditure, que representa as despesas necessárias para garantir a continuidade da operação do empreendimento ao longo de sua vida útil.
+
+O conjunto organizado dessas entradas e saídas ao longo do tempo forma aquilo que se denomina fluxo de caixa do projeto, elemento central de toda análise de viabilidade financeira.
+
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
+
+O fluxo de caixa corresponde ao registro das entradas (receitas) e saídas (custos e despesas) ou **OPEX (Operational Expenditure)** de recursos monetários de um empreendimento ao longo de sua vida útil. A vida útil, por sua vez, representa o período durante o qual o projeto permanece operacional e capaz de gerar resultados econômicos.
+:::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+Em projetos de produção de hidrogênio verde, a definição da vida útil está diretamente associada ao tempo de operação dos equipamentos vinculados à atividade-fim. Em sistemas baseados em geração fotovoltaica, é comum adotar como referência a durabilidade dos módulos solares, frequentemente estimada em cerca de 25 anos. Entretanto, componentes como inversores apresentam vida útil inferior (cerca de 13 anos), exigindo reinvestimentos ao longo do horizonte do projeto. De maneira análoga, eletrolisadores também possuem tempos de operação menores que os módulos fotovoltaicos (SOEC e ALK, 20 anos e PEM 15 anos), o que implica substituições intermediárias durante a trajetória do empreendimento. Assim, o fluxo de caixa desse tipo de projeto incorpora não apenas o investimento inicial, mas também novos aportes necessários para manter a capacidade produtiva ao longo do tempo.
+:::
+
+A partir desses conceitos, torna-se possível compreender a lógica fundamental da avaliação financeira. Em termos intuitivos, a viabilidade de um empreendimento dependerá da comparação entre o volume total de recursos investidos e gastos durante sua vida útil e o montante de receitas que o projeto é capaz de gerar nesse mesmo período.
+
+Entretanto, essa comparação não pode ser realizada por meio de uma soma simples dos valores observados em diferentes datas. Proceder dessa forma significaria desrespeitar o primeiro princípio apresentado neste capítulo, segundo o qual o dinheiro modifica seu valor ao longo do tempo.
+
+Dessa maneira, antes de comparar receitas e despesas, é necessário converter todos os valores do fluxo de caixa para uma mesma referência temporal. Somente após essa etapa é possível verificar se o resultado líquido do empreendimento é positivo ou negativo. Quando os benefícios superam os dispêndios, o projeto é considerado financeiramente viável; caso contrário, conclui-se pela sua inviabilidade.
+
+Se, por definição, assumirmos que o investimento inicial que viabiliza o início da operação do empreendimento ocorre, por convenção, no período zero, então todos os valores futuros do fluxo de caixa podem ser convertidos para essa mesma referência temporal — isto é, para o momento presente em que o capital é aplicado [@hawawini_2009].
+
+Nesse contexto, qualquer ocorrência monetária projetada em períodos futuros pode ser definida como Valor Futuro (VF), independentemente de se tratar de uma entrada de caixa (valor futuro positivo) ou de uma saída de caixa (valor futuro negativo) [@hawawini_2009].
+
+Como o valor do dinheiro no tempo se altera de forma exponencial, a maneira tecnicamente mais adequada de realizar essa correção intertemporal consiste na utilização de uma função exponencial de desconto.
+
+Assim, define-se o Valor Presente Líquido (VPL) como:
+
+$$VPL = \sum\limits_{n=0}^t \frac{VF_{n}}{(1+i)^n}$$
+
+Na expressão acima:
+
+- $t$ representa a vida útil do projeto;
+- $n=0,1,2,3,...,t$ corresponde aos períodos do fluxo de caixa;
+- $i$ é a taxa de juros utilizada para a correção intertemporal dos valores monetários;
+- $VF_{n}$ é o valor futuro observado no período $n$, positivo (receita) ou negativo (dispêndio).
+
+O $VPL$ corresponde, portanto, à soma de todos os valores do fluxo de caixa convertidos para o período zero. Observe que, no período zero, não há necessidade prática de correção monetária, pois $n = 0 \implies (1+i)^n = 1$. Logo, o valor futuro no período zero é igual ao seu próprio valor presente.
+
+A partir dessa definição, estabelece-se o seguinte critério de decisão:
+
+$$\begin{cases} VPL>0 \implies Projeto \ \ Viável \\ VPL < 0 \implies Projeto \ \ Inviável \end{cases}.$$
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
+
+O Valor Presente Líquido ($VPL$) corresponde à soma de todos os valores do fluxo de caixa de um projeto, positivos e negativos, devidamente convertidos para o período zero por meio de uma taxa de juros $i$. Sua expressão geral é:
+
+
+$$VPL = \sum\limits_{n=0}^t \frac{VF_{n}}{(1+i)^n}$$
+Se o VPL for positivo, o projeto gera valor econômico; se for negativo, destrói valor.
+:::
+
+::: {.cuidado}
+⚠️ **CUIDADO!**
+
+O Valor Presente Líquido é um critério exato e ótimo de análise de viabilidade financeira. Isso significa que, quanto maior o VPL, mais atrativo é o projeto. Ademais, caso o fluxo de caixa projetado se concretize, um VPL positivo implica necessariamente viabilidade financeira.
+
+Entretanto, é comum,inclusive em textos científicos, a utilização do critério denominado tempo de recuperação do capital (payback). O payback informa apenas quanto tempo é necessário para recuperar o capital investido a partir dos retornos líquidos do fluxo de caixa. Quanto menor esse tempo, mais atrativo o projeto pareceria sob esse critério.
+
+Contudo, o payback não é um critério exato nem ótimo de decisão. Ele não indica qual projeto maximiza valor e viola o princípio fundamental da análise financeira, segundo o qual valores monetários em períodos distintos não são diretamente comparáveis.
+
+Sua ampla utilização decorre da facilidade de cálculo e interpretação, gerando uma falsa sensação de segurança ao investidor, que passa a acreditar que, após recuperar o capital, todo retorno adicional representa benefício garantido. Essa interpretação é equivocada.
+
+Ao não considerar a alteração do valor do dinheiro no tempo, o payback subestima o verdadeiro tempo de recuperação do capital. Além disso, como interrompe a análise no momento da recuperação do investimento inicial, ignora fluxos de caixa posteriores, podendo levar à escolha de projetos economicamente inferiores.
+
+Considere o seguinte exemplo:
+
+- Projeto A: investimento de R\$ 100 para receber R\$ 50 nos próximos 5 períodos. O payback é de 2 períodos.
+
+- Projeto B: investimento de R\$ 100 para receber R\$ 25 nos próximos 4 períodos e R\$ 1.000.000 no quinto período. O payback é de 4 períodos.
+
+Pelo critério payback, o Projeto A seria escolhido. No entanto, é evidente que o Projeto B gera muito mais valor econômico.
+
+Dica: sempre que um projeto for avaliado exclusivamente pelo critério payback, saiba que a condução da análise financeira não foi realizada de maneira profissional.
+:::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+Imagine que um estudo indique um payback de 5 anos para um projeto de produção de hidrogênio verde baseado em sistemas fotovoltaicos, considerando uma vida útil de 25 anos. Esse resultado, isoladamente, não significa que o projeto seja viável.
+
+Conforme discutido anteriormente, ao longo da vida útil poderão ocorrer novos investimentos, como a substituição de inversores fotovoltaicos ou de pilhas eletrolíticas no décimo terceiro ano e décimo quinto ano, respectivamente. Essas saídas de caixa posteriores ao período de recuperação do capital podem alterar substancialmente o resultado econômico do empreendimento, tornando-o inviável mesmo após o payback ter sido atingido.
+:::
+
+
+
+
+
+
+
+
+
 
 
 

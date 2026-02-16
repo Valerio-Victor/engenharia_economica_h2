@@ -165,7 +165,7 @@ Os elementos apresentados evidenciam que a engenharia da eletrólise avançou de
 
 ## Estrutura da Apostila
 
-EEste material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global, abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
+Este material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global, abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
 
 O Capítulo 2 é dedicado à apresentação dos princípios básicos de finanças, que constituem o arcabouço conceitual necessário para a análise de viabilidade financeira de projetos de produção de hidrogênio verde. Esses princípios são fundamentais, pois fornecem o vocabulário e a lógica econômica que sustentam as técnicas de avaliação financeira empregadas em projetos de engenharia.
 
