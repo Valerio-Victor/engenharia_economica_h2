@@ -12,7 +12,7 @@ github-repo: rstudio/bookdown-demo
 
 # INTRODUÇÃO
 
-## O Desafio da Economia do H₂
+## O Desafio do Mercado de H₂
 
 O aquecimento global e as consequentes ocorrências de eventos extremos vêm se intensificando ao longo do tempo. Estima-se que, atualmente, a temperatura média global seja aproximadamente 1,1 ºC superior à observada no período pré-industrial. Como se sabe, uma das principais razões para essa realidade é a emissão de gases de efeito estufa (GEE), sendo o CO₂ um dos mais relevantes, responsável por mais de 50% dos efeitos das mudanças climáticas ao redor do mundo [@ipcc_2022; @acordo_paris; @fan_2022].
 
@@ -25,14 +25,14 @@ Diante desse contexto, pode-se observar uma tendência retomada nos últimos 10 
 Existe uma série de fatores que contribuem para essa expectativa. Em primeiro lugar, deve-se ressaltar que o hidrogênio é o elemento químico mais abundante no universo, constituindo 75% de sua massa total, e estando presente em 70% da superfície terrestre. Ressalta-se, contudo, que as moléculas de hidrogênio encontram-se disponíveis na natureza principalmente na forma de compostos com o carbono e na água [@moreira_2025; @nasser_2023]. Assim como apresentado em @moreira_2025, as principais caracterísicas do hidrogênio podem ser assim sintetizadas:
 
 - Terceiro elemento mais abundante na Terra;
-- Incolor, Inodoro, Insípido;
-- Baixa densidade 0,0899 g/l;
+- Incolor, inodoro, insípido;
+- Baixa densidade: 0,0899 $g/l$;
 - Inflamabilidade de 4,1 a 74,2 % de H₂ em volume de ar seco (temperatura de ignição 565-579°C).
 
 
 Obviamente, não é apenas pela grande disponibilidade de hidrogênio que se avalia como benéfica a transição energética dos países a partir de sua maior utilização. De fato, o hidrogênio é um vetor energético limpo e multifuncional, podendo ser obtido por uma ampla gama de tecnologias e, ao mesmo tempo, constitui matéria-prima para diversos setores industriais. Uma vez produzido, o hidrogênio pode ser convertido em gás natural sintético, combustíveis líquidos e produtos químicos verdes. Além disso, pode ser armazenado quimicamente e reconvertido em eletricidade [@bhandari_2021; @correa_2022].
 
-Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,9 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de combustíveis fósseis, como coque e gasolina. Uma síntese dessa comparação é apresentada na \@ref(fig:podercalorifico) [@moreira_2025].
+Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,9 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de outros combustíveis fósseis. Uma síntese comparativa é apresentada na \@ref(fig:podercalorifico)  com base em @moreira_2025.
 
 ```{r podercalorifico, fig.cap="Comparação entre Densidades Energéticas", echo=FALSE, message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
@@ -48,7 +48,7 @@ poder_calorifico <- data.frame(
                   "Querosene", 
                   "Carvão",
                   "Madeira"),
-  pc = c(141.90,
+  pc = c(140.90,
          47.27,
          47.21,
          55.55,
@@ -76,15 +76,33 @@ poder_calorifico  <- plotly::ggplotly(poder_calorifico, tooltip = 'text')
 poder_calorifico
 ```
 
-Ademais, um dos principais motivos pelos quais se entende que a economia do hidrogênio é essencial para impulsionar a transição energética está relacionado aos primeiros passos dados pelos países no processo de descarbonização de suas economias, a clearly partir da inserção de fontes de energia renováveis (FER) na eletrificação. Como a natureza dessas fontes renováveis — como a fotovoltaica, a eólica e a biomassa — é, em muitos casos, sazonal, intermitente e descentralizada, pode-se verificar incompatibilidades entre a oferta e a demanda de eletricidade. À medida que a participação das energias renováveis aumenta nas matrizes energéticas nacionais, a gestão do sistema torna-se progressivamente mais complexa [@bhandari_2021; @correa_2022].
+Ademais, um dos principais motivos pelos quais se entende que a economia do hidrogênio é essencial para impulsionar a transição energética está relacionado aos primeiros passos dados pelos países no processo de descarbonização de suas economias consistindo na inserção de fontes de energia renováveis (FER) na eletrificação. Como a natureza dessas fontes renováveis — como a fotovoltaica, a eólica e a biomassa — é sazonal, intermitente e descentralizada, pode-se verificar incompatibilidades entre a oferta e a demanda de eletricidade. À medida que a participação dessas fontes renováveis aumenta nas matrizes energéticas nacionais a gestão do sistema torna-se progressivamente mais complexa [@bhandari_2021; @correa_2022].
 
 Nesse sentido, o uso sinérgico do hidrogênio em conjunto com fontes renováveis de energia pode representar uma solução, na medida em que o hidrogênio pode ser armazenado e liberado quando necessário, preenchendo a lacuna entre as flutuações de oferta e demanda e, portanto, aumentando a confiabilidade do sistema. Essa aplicação também pode auxiliar no nivelamento de carga, na redução de picos e na regulação de frequência, melhorando, assim, a qualidade e a confiabilidade da energia fornecida [@bhandari_2021; @correa_2022].
 
-Sobre esse último aspecto, relacionado à sinergia entre a utilização de fontes renováveis de energia e a produção de hidrogênio para o equilíbrio entre oferta e demanda de eletricidade, é possível contextualizar as rotas de produção de hidrogênio. Conforme descrito por @rezaei_2022, para se obter o hidrogênio a partir da decomposição, existe uma variedade de tecnologias, envolvendo processos eletrolíticos, fotolíticos, químicos, biológicos e termoquímicos.
+Pode-se observar, portanto, que a discussão acerca da confiabilidade do sistema elétrico conduz naturalmente ao tema do armazenamento de energia, elemento fundamental para viabilizar a elevada participação de fontes renováveis variáveis a partir do uso do hidrogênio. 
 
-Atualmente, a maior parte do hidrogênio produzido é obtida por meio de combustíveis fósseis, como hidrocarbonetos e carvão. Estudos indicam que algo entre 95% e 98% da produção de hidrogênio envolve o consumo de combustíveis fósseis, sendo cerca de 75% proveniente da reforma de gás natural e entre 20% e 23% da gaseificação de carvão, representando aproximadamente 83 milhões de toneladas de CO₂ emitidos. Nesses casos, mesmo que a captura e o armazenamento de CO₂ sejam tecnicamente viáveis e associados a produção de hidrogênio (chamado de hidrogênio azul) com a finalidade de minimizar as emissões decorrentes da produção de hidrogênio, estas podem ser superiores às da simples queima de combustíveis fósseis, ainda que o uso posterior do hidrogênio seja limpo [@hurtubia_2021; @correa_2022; @rezaei_2022]. 
+Atualmente, diferentes tecnologias encontram-se disponíveis para a realização dessa função de armazenamento. Tais tecnologias podem ser classificadas conforme a forma de energia armazenada ou segundo a duração da descarga. Sob a ótica da forma de armazenamento, destacam-se alternativas mecânicas, eletroquímicas, químicas, elétricas e térmicas. Já sob a perspectiva temporal, distinguem-se sistemas de resposta de curto prazo, médio prazo e longo prazo, podendo estes últimos abranger períodos que variam de horas a dias ou até meses [@bhandari_2021].
 
-Com base em @fan_2022, na figura \@ref(fig:emissao) são apresentadas estimativas de emissão de CO₂ por matéria-prima utilizada para a produção.
+Nesse cenário, o hidrogênio tem recebido atenção crescente como alternativa estratégica. Enquanto vetor energético, possibilita o transporte da energia e sua posterior conversão na forma mais adequada ao uso final. O excedente de geração proveniente de fontes como solar e eólica pode ser convertido em hidrogênio por meio da eletrólise da água, conceito frequentemente denominado power-to-x. Essa característica viabiliza o armazenamento por longos períodos, inclusive em bases sazonais, além de permitir o transporte em grandes distâncias, conectando segmentos consumidores e produtores de energia em um processo conhecido como acoplamento setorial [@bhandari_2021].
+
+A literatura também distingue soluções de armazenamento de curto e de longo prazo. Enquanto as baterias representam exemplos típicos de respostas rápidas, os sistemas baseados em hidrogênio caracterizam-se pela capacidade de compensar variações na geração ao longo de períodos extensos, que podem atingir meses ou anos, inclusive para fins de balanceamento sazonal. Em comparação às tecnologias de curto prazo, apresentam maior volume de armazenamento, embora com menor eficiência de ciclo. Entretanto, em aplicações que demandam grandes capacidades energéticas, o menor custo relativo associado à energia armazenada torna essas soluções mais atrativas, sendo o armazenamento químico na forma de hidrogênio apontado como alternativa promissora [@bhandari_2021].
+
+Além disso, o hidrogênio demonstra competitividade frente a outras tecnologias no que se refere à confiabilidade e ao armazenamento em larga escala, permitindo que a eletricidade renovável produzida de forma dispersa seja aproveitada em usos finais situados em diferentes localidades, sob uma perspectiva global [@gallardo_2021]. Ainda que as baterias desempenhem papel relevante, sua aplicação tende a ser mais onerosa e menos eficiente para horizontes prolongados. 
+
+Nesse contexto, o hidrogênio apresenta-se como solução estratégica tanto para armazenamento quanto para consumo de energia, contribuindo para mitigar a volatilidade das fontes renováveis. Como variante das tecnologias power-to-gas, oferece uma via promissora para armazenamento e conversão de longo prazo, podendo constituir alternativa economicamente viável às baterias, além de apresentar zero emissões de carbono e maior densidade de armazenamento de energia [@park_2024].
+
+A possibilidade de armazenamento em larga escala conduz, inevitavelmente, à discussão sobre transporte e comércio internacional. A cadeia de suprimentos do hidrogênio envolve desafios técnicos relevantes. O hidrogênio liquefeito apresenta densidade de massa significativamente superior à do hidrogênio gasoso comprimido; contudo, suas condições logísticas são consideravelmente mais exigentes. Alternativamente, vetores químicos como a amônia podem mostrar-se adequados para transporte de longa distância, em virtude da maior densidade e da estabilidade em condições operacionais mais brandas [@gallardo_2021].
+
+A relevância desse debate torna-se evidente diante das projeções de demanda. Projeções internacionais indicam que a produção global de hidrogênio poderá atingir aproximadamente 70 EJ em 2050, dos quais cerca de 50 EJ seriam provenientes de eletricidade renovável [@correa_2022]. O Conselho do Hidrogênio sugere que a demanda mundial poderá crescer até dez vezes nesse horizonte, aproximando-se de 80 EJ. Entretanto, diversas economias deverão enfrentar limitações relevantes quanto à disponibilidade de recursos renováveis. Países asiáticos como China, Japão e Coreia do Sul, bem como grande parte da Europa, tendem a depender de importações para satisfazer suas necessidades energéticas. No caso europeu, reforça-se a expectativa de consumo em torno de 2250 TWh/ano (8,1 EJ/ano), com a necessidade de importar pelo menos 1000 TWh/ano (3,6 EJ/ano) [@correa_2022]. Nesse ambiente, análises técnico-econômicas projetam a América do Norte como potencial maior exportador até 2030, seguida pela Austrália, e indicam que cerca de 85% da demanda global estimada em 300 milhões de toneladas de hidrogênio verde até 2050 poderá requerer transporte inter-regional para atingir uma alocação economicamente eficiente [@park_2024].
+
+A partir desse crescimento expressivo do mercado internacional espera-se significativa ampliação da produção em um contexto em que novas rotas comerciais tenderão a conectar produtores de baixo custo a grandes centros consumidores, sendo frequentemente citadas regiões do Norte da África e da América do Sul como áreas estratégicas para exportação [@correa_2022]. Tais localidades configuram, portanto, potenciais concorrentes do Brasil no mercado internacional de hidrogênio.
+
+Como se sabe, o hidrogênio pode ser obtido por uma ampla variedade de processos, envolvendo tecnologias eletrolíticas, fotolíticas, químicas, biológicas ou termoquímicas, mas a eletrólise destaca-se como o método conceitualmente mais simples e limpo [@hurtubia_2021]. A aplicação de corrente elétrica promove a divisão da molécula de água em hidrogênio e oxigênio e, na etapa de uso final, a oxidação do hidrogênio em processos de combustão ou em células a combustível resulta novamente em água, configurando um ciclo que não envolve diretamente emissões de CO₂. Quando a eletricidade empregada é proveniente de fontes renováveis, o produto obtido caracteriza-se como hidrogênio verde [@rezaei_2022]. A intensidade de emissões associada à eletrólise, portanto, está intrinsecamente relacionada ao grau de descarbonização da matriz elétrica que alimenta o processo [@hurtubia_2021].
+
+Apesar da reconhecida sinergia entre a expansão das fontes renováveis, a necessidade de armazenamento e o papel estratégico do hidrogênio como vetor energético, a rota de eletrólise ainda representa parcela minoritária da produção mundial. Atualmente, a maior parte do hidrogênio produzido provém de rotas que utilizam combustíveis fósseis, tais como a reforma a vapor do gás natural e a gaseificação do carvão, que estão associadas a emissões significativas de gases de efeito estufa, mesmo que, em determinados contextos, tecnologias de Captura e Armazenamento de Carbono sejam incorporadas para mitigar parte dessas emissões [@hurtubia_2021].
+
+Ainda que a captura e o sequestro de carbono associados às rotas fósseis sejam tecnicamente viáveis, há evidências de que, em determinadas circunstâncias, as emissões totais da produção do hidrogênio a partir dessas rotas, chamado hidrogênio azul, podem superar aquelas provenientes da combustão direta do combustível original [@rezaei_2022]. Com base em @fan_2022, na figura \@ref(fig:emissao) são apresentadas estimativas de emissão de CO₂ por matéria-prima utilizada para a produção.
 
 ```{r emissao, fig.cap="Emissão de CO₂ na Produção de Hidrogênio", echo=FALSE, message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
@@ -113,39 +131,94 @@ emissao_co2_graf  <- plotly::ggplotly(emissao_co2_graf, tooltip = 'text')
 emissao_co2_graf
 ```
 
+Em números, estima-se que, da produção anual de hidrogênio, situada entre 70 e 73 milhões de toneladas, 75% estejam associadas ao gás natural e aproximadamente 23% relacionadas ao carvão, resultando em emissões anuais da ordem de 830 milhões de toneladas de CO₂ [@hurtubia_2021; @correa_2022; @tebibel_2021].
 
+De outro lado, apenas menos de 2% da produção de hidrogênio decorrem da eletrólise da água, e a predominância das rotas fósseis impõe um obstáculo relevante à neutralidade climática do hidrogênio, tornando-se evidente que a efetiva contribuição desse elemento para a transição energética depende, em grande medida, da transformação das rotas produtivas atuais na direção do uso de fontes renováveis limpas, dentre as quais se destacam biomassa, geotérmica, hidrelétricas, energia solar e eólica [@tebibel_2021].
 
+Diante de todas as evidências apresentadas — a urgência climática, a necessidade de integrar fontes renováveis variáveis, a relevância do armazenamento de energia e o potencial do hidrogênio como vetor capaz de conectar setores produtivos e regiões geográficas — emerge uma questão inevitável: **se a produção de hidrogênio verde por eletrólise apresenta tantas vantagens ambientais e sistêmicas, por que essa rota ainda permanece minoritária e incipiente no cenário mundial?**
 
+A resposta pode ser antecipada de forma direta. Embora desafios tecnológicos ainda existam, a limitação predominante não reside essencialmente na engenharia do processo, mas sobretudo na sua dimensão econômica. Em outras palavras, enquanto a expansão das soluções técnicas não estiver articulada com a ótica financeira, a ampliação do hidrogênio de baixo carbono tenderá a ocorrer em ritmo inferior ao necessário para sustentar a transição energética.
 
+Do ponto de vista tecnológico, os eletrolisadores evoluíram significativamente ao longo do último século. Tradicionalmente, distinguem-se equipamentos de baixa e de alta temperatura. Entre os primeiros, destacam-se os eletrolisadores alcalinos (ALK) e os de membrana de troca de prótons (PEM), cujas temperaturas de operação alcançam cerca de 80 °C. A tecnologia ALK tem sido empregada desde a década de 1920, em virtude de sua robustez e de seu menor custo de capital. Entretanto, a necessidade de unidades adicionais de purificação e compressão do hidrogênio, somada à dificuldade de operar sob flutuações de carga, tende a elevar os custos de produção e a reduzir sua eficiência operacional. Nesse contexto, a tecnologia PEM foi desenvolvida a partir da década de 1960 justamente para contornar essas limitações, oferecendo maior flexibilidade operacional e elevada pureza do hidrogênio produzido [@nasser_2023].
+
+Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Estimativas indicam que a pureza do hidrogênio e a eficiência podem atingir, respectivamente, 99,5% e 82% para ALK, 99,99% e 84% para PEM e 99,9% e 90% para SOEC [@nasser_2023].
+
+Apesar de amplamente difundida, a tecnologia alcalina apresenta restrições relevantes. Seus sistemas são reconhecidos pela elevada disponibilidade, durabilidade e menor custo de capital, sobretudo por dispensarem metais nobres e utilizarem componentes maduros. Todavia, enfrentam três limitações principais: baixa faixa dinâmica de carga, densidade de corrente limitada e baixa pressão de operação. A taxa mínima operável de produção situa-se entre 10% e 40% da capacidade máxima, o que implica resposta lenta às variações de energia e dificulta a integração com fontes renováveis intermitentes. Em razão disso, esses eletrolisadores tendem a operar com suprimento de potência constante [@hurtubia_2021].
+
+A tecnologia PEM, embora menos madura e frequentemente aplicada em escalas menores, oferece vantagens importantes: maior densidade de potência, fornecimento de hidrogênio de elevada pureza e operação altamente flexível. Sua faixa de carga pode variar entre 0% e 10%, característica que favorece o acoplamento com fontes renováveis. Por outro lado, apresenta desvantagens associadas ao alto custo de catalisadores, maior complexidade do sistema e vida útil inferior quando comparada ao ALK [@hurtubia_2021].
+
+As projeções indicam que, até 2030, o custo de capital poderá ser reduzido de 692 para 604 \$/kW no caso do ALK, de 1209 para 659 \$/kW no PEM e de 3500 para 659 \$/kW no SOEC. Ainda que o ALK permaneça como a alternativa de menor custo inicial, os demais tipos apresentam atributos — como maior eficiência, ausência de materiais corrosivos e configuração mais compacta — que podem compensar tal diferença. Além disso, estima-se que a vida útil do SOEC alcance 20 anos, valor semelhante ao do ALK, enquanto o PEM apresenta expectativa de 15 anos. Tanto PEM quanto SOEC demonstram melhor desempenho em condições de carga parcial quando comparados à tecnologia alcalina, reforçando a necessidade de investigações adicionais para avaliar o desempenho produtivo sob condições equivalentes de operação [@nasser_2023].
+
+A competitividade da produção de hidrogênio por eletrólise depende fortemente das características específicas de cada país, particularmente do custo da eletricidade, do fator de capacidade das plantas e da estrutura de investimentos. O equilíbrio entre esses elementos pode favorecer determinadas configurações da cadeia de suprimento em detrimento de outras. Adicionalmente, o volume de demanda influencia decisivamente se a estrutura de custos será dominada por despesas operacionais ou por investimentos, condicionando a viabilidade de diferentes arranjos logísticos e tecnológicos [@gallardo_2021].
+
+Projetos em grande escala, especialmente aqueles voltados à exportação, tendem a capturar economias de escala. Entretanto, a determinação precisa dos custos de sistemas multi-MW permanece desafiadora, em virtude da limitação dos módulos atualmente disponíveis, usualmente entre 1 e 2 MW, e da escassez de referências empíricas consolidadas. Dessa forma, projeções devem ser realizadas com cautela para assegurar realismo nas estimativas [@gallardo_2021].
+
+Mesmo diante da evolução tecnológica observada, a produção de hidrogênio verde ainda enfrenta significativa desvantagem competitiva. Estimativas apontam que o valor mínimo de venda necessário para viabilizar financeiramente a produção a partir de combustíveis fósseis situa-se entre 1 e 2 USD/kg, enquanto o hidrogênio renovável pode variar entre 3 e 8 USD/kg, podendo ultrapassar 10 USD/kg em cenários menos favoráveis [@park_2024].
+
+Análises de diferentes combinações tecnológicas indicam valores entre 6,1–8,27 \$/kg para sistemas PEM acoplados à energia solar fotovoltaica, 3,1–8,5 \$/kg para energia eólica, 2,36 \$/kg em arranjos geotérmicos e 1,77–2,43 $/kg quando associados a fontes hidrelétricas [@nasser_2023].
+
+Para que a produção eletrolítica alcance paridade com a reforma a vapor do metano em diferentes escalas, seria necessário reduzir o valor mínimo de venda para patamares entre 1 e 2,27 USD/kg [@ginsberg_2022].
+
+Os elementos apresentados evidenciam que a engenharia da eletrólise avançou de forma consistente, oferecendo múltiplas rotas tecnicamente viáveis e progressivamente mais eficientes. Todavia, a distância observada entre o desempenho tecnológico e a adoção em larga escala revela que a principal fronteira a ser superada encontra-se na esfera econômica.
+
+É precisamente nesse ponto que se insere a necessidade de compreender, com rigor metodológico, os instrumentos de avaliação financeira capazes de indicar sob quais condições a produção de hidrogênio verde pode tornar-se competitiva e sustentável.
 
 ## Estrutura da Apostila
 
-Este material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global ,abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
+EEste material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global, abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
 
-O Capítulo 2 é dedicado à apresentação dos princípios básicos de finanças, que constituem o arcabouço conceitual necessário para a análise de viabilidade financeira de projetos de produção de hidrogênio verde. Esses princípios são fundamentais, pois fornecem o vocabulário e a lógica econômica que sustentam as técnicas de avaliação financeira empregadas em projetos de engenharia. 
+O Capítulo 2 é dedicado à apresentação dos princípios básicos de finanças, que constituem o arcabouço conceitual necessário para a análise de viabilidade financeira de projetos de produção de hidrogênio verde. Esses princípios são fundamentais, pois fornecem o vocabulário e a lógica econômica que sustentam as técnicas de avaliação financeira empregadas em projetos de engenharia.
 
 Cumpre ressaltar que este capítulo não possui a pretensão de esgotar os temas da análise de viabilidade financeira, tampouco de aprofundar exaustivamente cada tópico apresentado. O objetivo é, antes, introduzir os conceitos amplamente utilizados na literatura e na prática profissional, servindo como uma base conceitual sólida para os capítulos subsequentes.
 
 Espera-se que, ao final do Capítulo 2, o leitor esteja familiarizado com o vocabulário essencial de finanças, sendo inclusive recomendada a construção de um dicionário próprio de conceitos, a fim de consolidar o aprendizado e facilitar consultas futuras. Com o intuito de tornar a leitura mais clara e orientada, esse capítulo utiliza marcadores específicos para destacar conteúdos relevantes. A interpretação desses marcadores deve seguir a lógica descrita a seguir.
 
 ::: {.conceito}
-📖 **CONCEITO DE FINANÇAS**
+📖 CONCEITO DE FINANÇAS
 
 Este bloco é utilizado para apresentar definições e conceitos fundamentais necessários à compreensão da análise de viabilidade financeira.
 :::
 
 ::: {.aplicacao}
-💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+💡 APLICAÇÃO EM PROJETOS DE $H_{2}$
 
 Este bloco aparece sempre de forma subsequente ao bloco de conceito e tem por finalidade estabelecer a ligação entre o conceito financeiro apresentado e sua aplicação em projetos de produção de hidrogênio.
 :::
 
 ::: {.cuidado}
-⚠️ **CUIDADO!**
+⚠️ CUIDADO!
 
 Este bloco é empregado para alertar o leitor sobre erros conceituais ou práticas inadequadas frequentemente observadas em avaliações de viabilidade financeira e que não devem ser reproduzidas em projetos reais.
 :::
 
+Ao longo do livro, diversos resultados são apresentados por meio de gráficos interativos em formato HTML. Isso significa que o leitor pode simplesmente posicionar o cursor do mouse sobre os elementos do gráfico para visualizar os valores exatos associados a cada ponto ou barra. Adicionalmente, esses gráficos permitem a exportação das figuras, possibilitando a geração de arquivos em formato PNG para utilização em relatórios, apresentações ou estudos complementares.
+
 A partir dos conceitos de finanças apresentados no Capítulo 2 e de suas respectivas associações com projetos de hidrogênio, o Capítulo 3 tem como objetivo apresentar um panorama atual do estado da arte do mercado de hidrogênio. Esse panorama é construído sob duas perspectivas complementares: a da demanda, relacionada aos principais usos do hidrogênio, e a da oferta, associada às diferentes rotas tecnológicas de produção, com ênfase no hidrogênio de baixo carbono.
 
 Por fim, o Capítulo 4 é dedicado à apresentação de estudos de caso de avaliação de viabilidade financeira, utilizando os parâmetros e conceitos discutidos nos capítulos anteriores. É importante destacar que esses estudos de caso possuem caráter didático e simplificado e não devem ser utilizados diretamente como suporte à tomada de decisão em projetos reais. Seu objetivo é orientar o leitor quanto à estrutura lógica de uma avaliação de viabilidade financeira, servindo como referência inicial para análises mais completas e detalhadas. Nesse capítulo, também são introduzidos aspectos práticos de implementação computacional, com destaque para o uso de planilhas eletrônicas (Excel) como ferramenta de apoio à análise.
+
+## Licença de Uso
+
+Esta apostila está licenciada sob a licença Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+knitr::include_graphics("licenca.png")
+```
+
+
+Essa licença permite que terceiros acessem e compartilhem o material com outras pessoas, desde que seja atribuída a devida autoria. Contudo, não é permitido modificar o conteúdo nem utilizá-lo para fins comerciais.
+
+- Termos da Licença
+
+  - Atribuição (BY):
+  É obrigatório conceder o crédito apropriado ao autor, incluir referência à licença e indicar se foram realizadas alterações. Essa atribuição deve ser feita de maneira razoável, sem sugerir que o autor ou o licenciante endossa o usuário ou o uso realizado.
+  
+  - Não Comercial (NC):
+  Não é permitido utilizar este material para finalidades comerciais. A licença veda explicitamente qualquer uso que envolva obtenção de vantagem comercial ou compensação financeira.
+  
+  - Sem Derivações (ND):
+  Caso o material seja remixado, transformado ou adaptado, a versão modificada não poderá ser distribuída. É autorizada apenas a circulação da obra em sua forma original e integral.
+
+Ao compartilhar ou mencionar este material em trabalhos acadêmicos, relatórios técnicos, apresentações ou qualquer outro meio, recomenda-se utilizar a seguinte referência:
+
+VALERIO, Victor Eduardo de Mello. Introdução à análise de viabilidade financeira de projetos de hidrogênio. Itajubá: Universidade Federal de Itajubá. Disponível em: https://valerio-victor.github.io/engenharia_economica_h2/
