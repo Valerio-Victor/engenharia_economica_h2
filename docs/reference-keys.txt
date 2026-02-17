@@ -2,11 +2,10 @@ fig:podercalorifico
 fig:emissao
 fig:ipca
 introdução
-o-desafio-do-mercado-de-h₂
+o-desafio-do-h₂-verde
 estrutura-da-apostila
 licença-de-uso
 princípios-de-finanças
 a-técnica-de-análise-financeira
-os-x-princípios-básicos
+os-4-princípios-básicos
 mercado-de-hidrogênio
-estudos-de-caso

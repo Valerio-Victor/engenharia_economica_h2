@@ -12,7 +12,7 @@ github-repo: rstudio/bookdown-demo
 
 # INTRODUÇÃO
 
-## O Desafio do Mercado de H₂
+## O Desafio do H₂ Verde
 
 O aquecimento global e as consequentes ocorrências de eventos extremos vêm se intensificando ao longo do tempo. Estima-se que, atualmente, a temperatura média global seja aproximadamente 1,1 ºC superior à observada no período pré-industrial. Como se sabe, uma das principais razões para essa realidade é a emissão de gases de efeito estufa (GEE), sendo o CO₂ um dos mais relevantes, responsável por mais de 50% dos efeitos das mudanças climáticas ao redor do mundo [@ipcc_2022; @acordo_paris; @fan_2022].
 
@@ -141,7 +141,50 @@ A resposta pode ser antecipada de forma direta. Embora desafios tecnológicos ai
 
 Do ponto de vista tecnológico, os eletrolisadores evoluíram significativamente ao longo do último século. Tradicionalmente, distinguem-se equipamentos de baixa e de alta temperatura. Entre os primeiros, destacam-se os eletrolisadores alcalinos (ALK) e os de membrana de troca de prótons (PEM), cujas temperaturas de operação alcançam cerca de 80 °C. A tecnologia ALK tem sido empregada desde a década de 1920, em virtude de sua robustez e de seu menor custo de capital. Entretanto, a necessidade de unidades adicionais de purificação e compressão do hidrogênio, somada à dificuldade de operar sob flutuações de carga, tende a elevar os custos de produção e a reduzir sua eficiência operacional. Nesse contexto, a tecnologia PEM foi desenvolvida a partir da década de 1960 justamente para contornar essas limitações, oferecendo maior flexibilidade operacional e elevada pureza do hidrogênio produzido [@nasser_2023].
 
-Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Estimativas indicam que a pureza do hidrogênio e a eficiência podem atingir, respectivamente, 99,5% e 82% para ALK, 99,99% e 84% para PEM e 99,9% e 90% para SOEC [@nasser_2023].
+Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Uma síntese comparativa de algus parâmetros técnicos organizada por @nasser_2023 é apresentada na \ a seguir.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+library(gt)
+
+param_tec <- data.frame(
+  
+  eletrolisadores = c("Alcalino (ALK)", 
+                      "Membrana de Troca de Prótons (PEM)",
+                      "Célula Eletrolítica de Óxido Sólido (SOEC)"),
+  pureza = c(0.995,
+             0.999,
+             0.999),
+  eficiencia = c(0.82,
+                 0.84,
+                 0.90)) %>% 
+  dplyr::mutate(pureza = scales::percent(pureza, 
+                                         decimal.mark = ',', 
+                                         accuracy = 0.1),
+                eficiencia = scales::percent(eficiencia, 
+                                             decimal.mark = ',', 
+                                             accuracy = 0.1))
+
+param_tec %>%
+  gt() %>%
+  cols_label(
+    eletrolisadores = "Tecnologia de Eletrolisador",
+    pureza = "Pureza do H₂ Produzido",
+    eficiencia = "Eficiência da Célula"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "#2e7d32"),
+      cell_text(color = "#e8f5e9", weight = "bold")
+    ),
+    locations = cells_column_labels()
+  ) 
+
+
+```
+
+
+Estimativas indicam que a pureza do hidrogênio e a eficiência podem atingir, respectivamente, 99,5% e 82% para ALK, 99,99% e 84% para PEM e 99,9% e 90% para SOEC [].
 
 Apesar de amplamente difundida, a tecnologia alcalina apresenta restrições relevantes. Seus sistemas são reconhecidos pela elevada disponibilidade, durabilidade e menor custo de capital, sobretudo por dispensarem metais nobres e utilizarem componentes maduros. Todavia, enfrentam três limitações principais: baixa faixa dinâmica de carga, densidade de corrente limitada e baixa pressão de operação. A taxa mínima operável de produção situa-se entre 10% e 40% da capacidade máxima, o que implica resposta lenta às variações de energia e dificulta a integração com fontes renováveis intermitentes. Em razão disso, esses eletrolisadores tendem a operar com suprimento de potência constante [@hurtubia_2021].
 
@@ -165,37 +208,35 @@ Os elementos apresentados evidenciam que a engenharia da eletrólise avançou de
 
 ## Estrutura da Apostila
 
-Este material é composto por quatro capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global, abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque.
+Este material é composto por 2 capítulos, além desta introdução. Enquanto a primeira seção do Capítulo 1 dedica-se à contextualização da economia do hidrogênio no cenário global, abordando as motivações econômicas, ambientais e estratégicas, esta segunda seção tem por objetivo apresentar ao leitor a estrutura do documento, bem como esclarecer a lógica pedagógica adotada ao longo dos capítulos, em especial no que se refere ao uso de marcadores de destaque. Uma última seção é adicionada para discurtir as licenças de uso do material.
 
 O Capítulo 2 é dedicado à apresentação dos princípios básicos de finanças, que constituem o arcabouço conceitual necessário para a análise de viabilidade financeira de projetos de produção de hidrogênio verde. Esses princípios são fundamentais, pois fornecem o vocabulário e a lógica econômica que sustentam as técnicas de avaliação financeira empregadas em projetos de engenharia.
 
-Cumpre ressaltar que este capítulo não possui a pretensão de esgotar os temas da análise de viabilidade financeira, tampouco de aprofundar exaustivamente cada tópico apresentado. O objetivo é, antes, introduzir os conceitos amplamente utilizados na literatura e na prática profissional, servindo como uma base conceitual sólida para os capítulos subsequentes.
+Cumpre ressaltar que este capítulo não possui a pretensão de esgotar os temas da análise de viabilidade financeira, tampouco de aprofundar exaustivamente cada tópico apresentado. O objetivo é, antes, introduzir os conceitos amplamente utilizados na literatura e na prática profissional, servindo como uma base conceitual sólida para análise do capítulo subsequente.
 
 Espera-se que, ao final do Capítulo 2, o leitor esteja familiarizado com o vocabulário essencial de finanças, sendo inclusive recomendada a construção de um dicionário próprio de conceitos, a fim de consolidar o aprendizado e facilitar consultas futuras. Com o intuito de tornar a leitura mais clara e orientada, esse capítulo utiliza marcadores específicos para destacar conteúdos relevantes. A interpretação desses marcadores deve seguir a lógica descrita a seguir.
 
 ::: {.conceito}
-📖 CONCEITO DE FINANÇAS
+📖 **CONCEITO DE FINANÇAS**
 
 Este bloco é utilizado para apresentar definições e conceitos fundamentais necessários à compreensão da análise de viabilidade financeira.
 :::
 
 ::: {.aplicacao}
-💡 APLICAÇÃO EM PROJETOS DE $H_{2}$
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
 
 Este bloco aparece sempre de forma subsequente ao bloco de conceito e tem por finalidade estabelecer a ligação entre o conceito financeiro apresentado e sua aplicação em projetos de produção de hidrogênio.
 :::
 
 ::: {.cuidado}
-⚠️ CUIDADO!
+⚠️ **CUIDADO!**
 
 Este bloco é empregado para alertar o leitor sobre erros conceituais ou práticas inadequadas frequentemente observadas em avaliações de viabilidade financeira e que não devem ser reproduzidas em projetos reais.
 :::
 
-Ao longo do livro, diversos resultados são apresentados por meio de gráficos interativos em formato HTML. Isso significa que o leitor pode simplesmente posicionar o cursor do mouse sobre os elementos do gráfico para visualizar os valores exatos associados a cada ponto ou barra. Adicionalmente, esses gráficos permitem a exportação das figuras, possibilitando a geração de arquivos em formato PNG para utilização em relatórios, apresentações ou estudos complementares.
-
 A partir dos conceitos de finanças apresentados no Capítulo 2 e de suas respectivas associações com projetos de hidrogênio, o Capítulo 3 tem como objetivo apresentar um panorama atual do estado da arte do mercado de hidrogênio. Esse panorama é construído sob duas perspectivas complementares: a da demanda, relacionada aos principais usos do hidrogênio, e a da oferta, associada às diferentes rotas tecnológicas de produção, com ênfase no hidrogênio de baixo carbono.
 
-Por fim, o Capítulo 4 é dedicado à apresentação de estudos de caso de avaliação de viabilidade financeira, utilizando os parâmetros e conceitos discutidos nos capítulos anteriores. É importante destacar que esses estudos de caso possuem caráter didático e simplificado e não devem ser utilizados diretamente como suporte à tomada de decisão em projetos reais. Seu objetivo é orientar o leitor quanto à estrutura lógica de uma avaliação de viabilidade financeira, servindo como referência inicial para análises mais completas e detalhadas. Nesse capítulo, também são introduzidos aspectos práticos de implementação computacional, com destaque para o uso de planilhas eletrônicas (Excel) como ferramenta de apoio à análise.
+Ressalta-se que ao longo do livro, diversos levantamentos são apresentados por meio de gráficos interativos em formato HTML. Isso significa que o leitor pode simplesmente posicionar o cursor do mouse sobre os elementos do gráfico para visualizar os valores exatos associados a cada ponto ou barra. Adicionalmente, esses gráficos permitem a exportação das figuras, possibilitando a geração de arquivos em formato PNG para utilização em relatórios, apresentações ou estudos complementares.
 
 ## Licença de Uso
 
