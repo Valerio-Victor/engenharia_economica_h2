@@ -53,7 +53,7 @@ acum_ano <- ipca_ts %>%
     group = 1,
     text = paste0('Ano: ', data,
                   '<br>Taxa: ', scales::number(valor,
-                                               decimal.mark = '.',
+                                               decimal.mark = ',',
                                                suffix = '%',
                                                accuracy = 0.01))),
     colour = '#2e7d32',
@@ -64,7 +64,7 @@ acum_ano <- ipca_ts %>%
     group = 1,
     text = paste0('Ano: ', data,
                   '<br>Taxa: ', scales::number(valor,
-                                               decimal.mark = '.',
+                                               decimal.mark = ',',
                                                suffix = '%',
                                                accuracy = 0.01))),
     colour = '#2e7d32',
@@ -286,9 +286,9 @@ Se o projeto analisado não for capaz de gerar retorno superior à $TMA$, não h
 ::: {.conceito}
 📖 **CONCEITO DE FINANÇAS**
 
-A $TMA$ (Taxa Mínima de Atratividade)** é a taxa de retorno mínima exigida pelo investidor para aplicar recursos em um empreendimento, considerando o nível de risco assumido. Ela representa o **custo de oportunidade do capital**, isto é, o retorno que poderia ser obtido em alternativas de investimento com grau de risco equivalente.
+A $TMA$ (Taxa Mínima de Atratividade) é a taxa de retorno mínima exigida pelo investidor para aplicar recursos em um empreendimento, considerando o nível de risco assumido. Ela representa o **custo de oportunidade do capital**, isto é, o retorno que poderia ser obtido em alternativas de investimento com grau de risco equivalente.
 
-Na análise de viabilidade financeira, a TMA é utilizada como taxa de desconto no cálculo do $VPL$ e de indicadores derivados, como o $LCOH$ e, por consequência, o $MACC$. Ao descontar os fluxos de caixa futuros pela $TMA$, realiza-se implicitamente uma comparação entre o projeto avaliado e uma aplicação alternativa de mesmo risco.
+Na análise de viabilidade financeira, a $TMA$ é utilizada como taxa de desconto no cálculo do $VPL$ e de indicadores derivados, como o $LCOH$ e, por consequência, o $MACC$. Ao descontar os fluxos de caixa futuros pela $TMA$, realiza-se implicitamente uma comparação entre o projeto avaliado e uma aplicação alternativa de mesmo risco.
 
 Se o $VPL > 0$, significa que o empreendimento gera valor acima da remuneração exigida para compensar o risco assumido, criando riqueza adicional ao investidor. Se $VPL < 0$, o projeto não atinge o retorno mínimo requerido, destruindo valor sob a perspectiva financeira.
 :::
@@ -300,6 +300,224 @@ No contexto de projetos de produção de hidrogênio verde, essa discussão assu
 Consequentemente, quanto maior a percepção de risco associada ao projeto, maior tende a ser a Taxa Mínima de Atratividade ($TMA$) exigida pelo investidor. Como a $TMA$ é utilizada para descontar os fluxos de caixa futuros, seu aumento reduz o valor presente das receitas projetadas, diminuindo o $VPL$ do empreendimento. Em termos práticos, o próprio fato de o projeto ser considerado de alto risco já impõe uma penalidade financeira, pois eleva a taxa de desconto aplicada e, assim, reduz o valor econômico atribuído aos resultados futuros da operação do eletrolisador. Trata-se, portanto, de um mecanismo de ajuste pelo risco assumido, que impacta diretamente a probabilidade de o projeto ser considerado viável sob a ótica financeira.
 :::
 
+**Princípio 04 – A Viabilidade Financeira é Condicionada pelo Ambiente Macroeconômico e Institucional**
+
+**A viabilidade financeira de um empreendimento não depende exclusivamente de fatores técnicos, tais como eficiência tecnológica, maturidade dos equipamentos ou estrutura de custos operacionais**. Ainda que CAPEX e OPEX sejam fortemente influenciados por variáveis técnicas, o ambiente macroeconômico e institucional no qual o projeto está inserido exerce impacto direto e, muitas vezes, determinante sobre o resultado financeiro.
+
+Em primeiro lugar, a taxa de câmbio influencia diretamente os gastos com equipamentos e serviços importados. Projetos de produção de hidrogênio verde frequentemente dependem de eletrolisadores, componentes eletrônicos e sistemas de controle adquiridos no exterior. A desvalorização da moeda nacional eleva o custo desses itens, aumentando o CAPEX e, consequentemente, o $LCOH$ do projeto. Para contextualizar o ambiente cambial relevante às decisões de investimento, apresentam-se na \@ref(fig:cambio) as taxas de câmbio nominal entre o real e o euro, bem como entre o real e o dólar [@bcb_cambio]. 
+
+```{r cambio, fig.cap="Taxa de Câmbio Nominal (Euro e Dólar)", echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+library(httr)
+library(jsonlite)
+library(ggplot2)
+
+serie_dolar <- 10813
+serie_euro <- 21620
+
+inicio <- format(Sys.Date() - lubridate::years(x = 10), '%d/%m/%Y') 
+fim <- format(Sys.Date(), '%d/%m/%Y')
+
+# Dólar Americano
+url <- paste0(
+  'https://api.bcb.gov.br/dados/serie/bcdata.sgs.', 
+  serie_dolar,
+  '/dados?formato=json&dataInicial=',
+  inicio,
+  '&dataFinal=',
+  fim)
+
+response <- GET(url)
+
+cambio_nominal_dolar <- fromJSON(content(response, "text")) %>% 
+  dplyr::transmute(Data = lubridate::dmy(data),
+                   Valor = as.numeric(valor)) %>% 
+  dplyr::mutate(ref = 'Dólar')
+
+# Euro
+url <- paste0(
+  'https://api.bcb.gov.br/dados/serie/bcdata.sgs.', 
+  serie_euro,
+  '/dados?formato=json&dataInicial=',
+  inicio,
+  '&dataFinal=',
+  fim)
+
+response <- GET(url)
+
+cambio_nominal_euro <- fromJSON(content(response, "text")) %>% 
+  dplyr::transmute(Data = lubridate::dmy(data),
+                   Valor = as.numeric(valor)) %>% 
+  dplyr::mutate(ref = 'Euro')
+
+cambio <- dplyr::bind_rows(cambio_nominal_dolar,
+                           cambio_nominal_euro)
+
+cambio_graf <- cambio %>% 
+  ggplot() + 
+  ggplot2::geom_point(mapping = ggplot2::aes(
+    x = Data, y = Valor, color = ref,
+    group = 1,
+    text = paste0('Data: ', Data,
+                  '<br>Taxa de Câmbio: ', scales::number(Valor,
+                                               decimal.mark = ',',
+                                               prefix = 'R$',
+                                               accuracy = 0.01))),
+    size = .75) +
+  
+   ggplot2::geom_line(mapping = ggplot2::aes(
+    x = Data, y = Valor, color = ref,
+    group = 1,
+    text = paste0('Data: ', Data,
+                  '<br>Taxa de Câmbio: ', scales::number(Valor,
+                                               decimal.mark = ',',
+                                               prefix = 'R$',
+                                               accuracy = 0.01))),
+    size = .5) +
+  ggplot2::scale_color_manual(values = c('Euro' = '#2e7d32', 'Dólar' = '#0088b9')) + 
+  ggplot2::labs(title = '',
+                color = '',
+                x = 'Data',
+                y = 'Taxa de Câmbio Nominal (R$/Moeda Estrangeira)') + 
+  ggplot2::theme_light()
 
 
+cambio_graf  <- plotly::ggplotly(cambio_graf, tooltip = 'text') %>% 
+  plotly::layout(
+    legend = list(
+      orientation = "h",   # horizontal
+      x = 0.5,             # centraliza
+      xanchor = "center",
+      y = -0.2             # posição abaixo do gráfico
+    )
+  )
 
+cambio_graf
+
+```
+
+Com base na evolução das taxas de câmbio, observa-se que, entre 2022 e o início de 2024, o real apresentou relativa valorização nominal, o que tende a aumentar a viabilidade de projetos no Brasil, especialmente aqueles com elevada dependência de equipamentos e serviços importados. A valorização cambial reduz o custo em moeda nacional dos componentes adquiridos no exterior, diminuindo o CAPEX e, potencialmente, o $LCOH$ do empreendimento.
+
+Em sentido oposto, ao final de 2024 verificou-se um movimento de desvalorização do real, elevando os custos de importação e reduzindo, no curto prazo, a atratividade financeira de novos investimentos. Posteriormente, observa-se uma tendência de recuperação cambial, configurando um cenário potencialmente mais favorável à retomada ou aceleração de decisões de investimento.
+
+Essas variações cambiais ajudam a explicar por que determinados projetos podem ser postergados ou antecipados ao longo do tempo, na medida em que o ambiente macroeconômico influencia diretamente a viabilidade financeira do empreendimento.
+
+Em segundo lugar, a estabilidade institucional de um país afeta a percepção de risco do investidor. Ambientes marcados por insegurança jurídica, volatilidade regulatória ou incerteza política tendem a elevar o risco do empreendimento. Como discutido anteriormente, maior risco implica maior Taxa Mínima de Atratividade ($TMA$), o que reduz o valor presente dos fluxos de caixa futuros e dificulta a viabilidade financeira do projeto.
+
+O nível de inflação também exerce influência relevante. Economias com inflação elevada tendem a apresentar taxas básicas de juros mais altas. No Brasil, por exemplo, a taxa SELIC encontra-se atualmente em torno de 15% ao ano, sendo considerada a menor taxa de referência praticada na economia, salvo situações de subsídio. Essa taxa influencia o custo do financiamento do projeto, afetando as despesas financeiras e, consequentemente, o fluxo de caixa líquido.
+
+Além disso, o sistema tributário impacta diretamente o fluxo de caixa do empreendimento. No Brasil, por exemplo, tributos federais como PIS (Programa de Integração Social) e COFINS (Contribuição para o Financiamento da Seguridade Social) incidem sobre a receita. O IRPJ (Imposto de Renda de Pessoa Jurídica) e a CSLL (Contribuição Social sobre o Lucro Líquido) incidem sobre o lucro. Já o ICMS (Imposto sobre Circulação de Mercadorias e Serviços), principal tributo estadual, também incide sobre a receita bruta, o que implica que a viabilidade financeira pode variar inclusive entre diferentes estados brasileiros.
+
+Portanto, para se construir o fluxo de caixa de um projeto, não basta subtrair o OPEX da receita de vendas. É necessário considerar tributos, despesas financeiras e estrutura de financiamento. De maneira simplificada, a organização do fluxo de caixa pode ser representada conforme \@ref(tab:fc) a seguir.
+
+```{r fc, tab.cap="Estrutura de Organização do FLuxo de Caixa (Brasil)", echo=FALSE, message=FALSE, warning=FALSE}
+library(magrittr, include.only = '%>%')
+library(gt)
+
+fc <- data.frame(
+  
+  variavel = c(
+'RECEITA BRUTA DE VENDAS',
+'(-) TRIBUTOS SOBRE A RECEITA (PIS, COFINS, ICMS)',
+'RECEITA LÍQUIDA DE VENDAS',
+'(-) CUSTOS FIXOS',
+'(-) CUSTOS VARIÁVEIS',
+'LUCRO BRUTO',
+'(-) DESPESAS FIXAS',
+'(-) DESPESAS VARIÁVEIS',
+'(-) DEPRECIAÇÃO CONTÁBIL',
+'LUCRO ANTES DOS JUROS E DOS IMPOSTOS (EBIT)',
+'(-) DESPESAS FINANCEIRAS (JUROS)',
+'LUCRO ANTES DOS TRIBUTOS',
+'(-) TRIBUTOS SOBRE O LUCRO (IRPJ / CSLL)',
+'LUCRO LÍQUIDO',
+'(+) DEPRECIAÇÃO CONTÁBIL',
+'(-) AMORTIZAÇÃO DE DÍVIDAS',
+'(-) INVESTIMENTO EM CAPITAL FIXO (CAPEX)',
+'(-) INVESTIMENTO EM CAPITAL DE GIRO',
+'(+) LIBERAÇÃO DE FINANCIAMENTO',
+'FLUXO DE CAIXA'
+  ))
+
+fc %>%
+  gt(caption = 'Estrutura de Organização do FLuxo de Caixa (Brasil)') %>%
+  cols_label(
+    variavel = "Variáveis Financeiras",
+  ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "#2e7d32"),
+      cell_text(color = "#e8f5e9", weight = "bold")
+    ),
+    locations = cells_column_labels()
+  ) 
+
+
+```
+
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
+
+Abaixo são apresentados conceitos para melhor compreender a estrutura do fluxo de caixa.
+
+- **Custo** refere-se a gastos diretamente associados à atividade produtiva.  
+- **Despesa** corresponde a gastos administrativos, comerciais ou financeiros.  
+
+- **Fixo** é o valor que não varia com o nível de produção.  
+- **Variável** é aquele que se altera proporcionalmente ao volume produzido.  
+
+- **Depreciação contábil** é o reconhecimento contábil da perda de valor dos ativos ao longo do tempo, segundo alíquotas definidas pela Receita Federal. Não corresponde necessariamente à depreciação econômica real do ativo.  
+
+- **Despesa financeira (juros)** representa o custo do capital de terceiros.  
+- **Amortização** é a devolução do principal da dívida.  
+
+- **Capital fixo (CAPEX)** corresponde aos investimentos em ativos permanentes.  
+- **Capital de giro** representa os recursos necessários para financiar a operação corrente do empreendimento.
+
+- **CSLL**: aproximadamente 9% sobre o lucro.  
+
+- **IRPJ**: aproximadamente 25% sobre o lucro.  
+
+- **ICMS**: tributo estadual incidente sobre a receita bruta, cuja alíquota depende do estado.
+:::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+O marco legal do hidrogênio verde no Brasil [@brasil_lei_14948], sancionado em 2024, estabelece incentivos fiscais relevantes, incluindo a suspensão ou redução a zero das alíquotas de PIS e COFINS para a produção e comercialização de hidrogênio de baixa emissão de carbono e seus derivados. Essa medida busca fomentar o setor até 2032, melhorando a estrutura do fluxo de caixa e reduzindo o $LCOH$ dos projetos.
+
+Do ponto de vista da estrutura do fluxo de caixa, esses incentivos incidem diretamente sobre a receita bruta, reduzindo os tributos e ampliando a receita líquida do empreendimento. Essa alteração impacta positivamente o resultado operacional e, consequentemente, o fluxo de caixa disponível ao investidor.
+
+Em projetos de produção de hidrogênio verde, os custos fixos correspondem, por exemplo, a contratos permanentes de operação, manutenção programada e seguros da planta. Já os custos variáveis estão associados ao volume produzido, como consumo de energia elétrica, água desmineralizada e insumos operacionais. As despesas fixas podem envolver estrutura administrativa, monitoramento regulatório e serviços de suporte, enquanto as despesas variáveis podem incluir gastos logísticos proporcionais à comercialização do hidrogênio. O conjunto de custos e despesas operacionais forma aquilo que, na análise financeira, é usualmente denominado OPEX (Operational Expenditure) do projeto.
+
+As despesas financeiras, representadas pelos juros do financiamento, impactam o lucro antes dos tributos, enquanto a amortização da dívida representa a devolução do principal financiado e afeta diretamente o fluxo de caixa. O capital fixo refere-se aos investimentos realizados na aquisição de eletrolisadores, módulos fotovoltaicos, sistemas de compressão e infraestrutura, compondo o CAPEX do empreendimento. Já o capital de giro corresponde aos recursos necessários para financiar a operação corrente, como estoques, contas a receber e caixa mínimo operacional.
+
+Assim, qualquer política pública que reduza tributos, juros de financiamento ou custos operacionais altera múltiplos componentes do fluxo de caixa, elevando o $VPL$, reduzindo o $LCOH$ e aumentando a competitividade do hidrogênio verde frente às rotas convencionais.
+:::
+
+Além das variáveis macroeconômicas e tributárias, políticas públicas podem ser utilizadas para incentivar tecnologias estratégicas. Quando o objetivo é reduzir custos recorrentes de operação, denomina-se subsídio a política pública voltada à diminuição do OPEX. Quando o objetivo é reduzir o investimento inicial, denomina-se subvenção a política pública direcionada à redução do CAPEX. Ambas podem ser implementadas isoladamente ou de forma combinada para melhorar a viabilidade financeira do empreendimento.
+
+::: {.conceito}
+📖 **CONCEITO DE FINANÇAS**
+
+- Subsídio: política pública que reduz custos recorrentes (OPEX), diminuindo as despesas operacionais ao longo da vida útil do empreendimento.
+- Subvenção: política pública que reduz o investimento inicial (CAPEX), atenuando o volume de recursos necessários para implantar o projeto.
+
+A análise de viabilidade financeira pode, inclusive, orientar o desenho de políticas públicas. Ao decompor o fluxo de caixa e identificar quais componentes exercem maior impacto sobre o $VPL$ ou sobre o $LCOH$, torna-se possível verificar se a principal restrição econômica do projeto está associada ao CAPEX ou ao OPEX. Com base nessa avaliação, o formulador de políticas pode direcionar instrumentos de incentivo de forma mais eficiente, optando por subsídios operacionais, subvenções ao investimento ou pela combinação de ambos, de modo a maximizar o efeito sobre a viabilidade do empreendimento.
+:::
+
+::: {.aplicacao}
+💡 **APLICAÇÃO EM PROJETOS DE $H_{2}$**
+
+Pode-se, por exemplo, adotar um subsídio na tarifa de energia elétrica, reduzindo o OPEX do projeto. Alternativamente, pode-se implementar uma subvenção na aquisição de eletrolisadores, diminuindo o CAPEX inicial. Em ambos os casos, espera-se reduzir o $LCOH$ e aumentar a competitividade do hidrogênio verde frente às rotas fósseis.
+:::
+
+Por todos esses motivos, não se pode assumir que uma análise de viabilidade realizada em outro país possa ser automaticamente replicada para o contexto brasileiro. As variáveis macroeconômicas impactam, no mínimo, tanto quanto as variáveis técnicas.
+
+::: {.cuidado}
+⚠️ **CUIDADO!**
+
+É comum comparar a competitividade de diferentes tecnologias por meio do $LCOH$. Essa prática é adequada. Contudo, quando os $LCOH$ são calculados para países distintos, a conclusão de que uma tecnologia é mais viável que outra pode ser equivocada. As realidades macroeconômicas, institucionais, tributárias e financeiras variam significativamente entre países. Portanto, não se deve comparar diretamente $LCOH$ calculados para contextos nacionais distintos.
+:::
+
+À luz dos quatro princípios apresentados, torna-se evidente que a viabilidade financeira de um empreendimento não decorre de um único fator isolado, mas da interação estruturada entre o valor do dinheiro no tempo, a formação e organização do fluxo de caixa, a exigência de retorno compatível com o risco assumido e o ambiente macroeconômico e institucional no qual o projeto está inserido. Esses fundamentos constituem a base analítica sobre a qual se apoiam os critérios de decisão de investimento, bem como os indicadores derivados, como o $VPL$, o $LCOH$ e o $MACC$. Compreendidos esses elementos conceituais, torna-se possível avançar para a aplicação prática desses instrumentos, examinando como tais princípios se materializam em avaliações concretas de projetos de produção de hidrogênio de baixo carbono no contexto real de mercado.

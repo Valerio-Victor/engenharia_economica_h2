@@ -141,9 +141,9 @@ A resposta pode ser antecipada de forma direta. Embora desafios tecnológicos ai
 
 Do ponto de vista tecnológico, os eletrolisadores evoluíram significativamente ao longo do último século. Tradicionalmente, distinguem-se equipamentos de baixa e de alta temperatura. Entre os primeiros, destacam-se os eletrolisadores alcalinos (ALK) e os de membrana de troca de prótons (PEM), cujas temperaturas de operação alcançam cerca de 80 °C. A tecnologia ALK tem sido empregada desde a década de 1920, em virtude de sua robustez e de seu menor custo de capital. Entretanto, a necessidade de unidades adicionais de purificação e compressão do hidrogênio, somada à dificuldade de operar sob flutuações de carga, tende a elevar os custos de produção e a reduzir sua eficiência operacional. Nesse contexto, a tecnologia PEM foi desenvolvida a partir da década de 1960 justamente para contornar essas limitações, oferecendo maior flexibilidade operacional e elevada pureza do hidrogênio produzido [@nasser_2023].
 
-Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Uma síntese comparativa de algus parâmetros técnicos organizada por @nasser_2023 é apresentada na \ a seguir.
+Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Uma síntese comparativa de algus parâmetros técnicos organizada por @nasser_2023 é apresentada na \@ref(tab:eletrolisadores) a seguir.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r eletrolisadores, tab.cap="Parâmetros Técnicos dos eletrolisadores Eletrolisadores", echo=FALSE, message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 library(gt)
 
@@ -166,7 +166,7 @@ param_tec <- data.frame(
                                              accuracy = 0.1))
 
 param_tec %>%
-  gt() %>%
+  gt(caption = 'Parâmetros Técnicos dos eletrolisadores Eletrolisadores') %>%
   cols_label(
     eletrolisadores = "Tecnologia de Eletrolisador",
     pureza = "Pureza do H₂ Produzido",
@@ -182,9 +182,6 @@ param_tec %>%
 
 
 ```
-
-
-Estimativas indicam que a pureza do hidrogênio e a eficiência podem atingir, respectivamente, 99,5% e 82% para ALK, 99,99% e 84% para PEM e 99,9% e 90% para SOEC [].
 
 Apesar de amplamente difundida, a tecnologia alcalina apresenta restrições relevantes. Seus sistemas são reconhecidos pela elevada disponibilidade, durabilidade e menor custo de capital, sobretudo por dispensarem metais nobres e utilizarem componentes maduros. Todavia, enfrentam três limitações principais: baixa faixa dinâmica de carga, densidade de corrente limitada e baixa pressão de operação. A taxa mínima operável de produção situa-se entre 10% e 40% da capacidade máxima, o que implica resposta lenta às variações de energia e dificulta a integração com fontes renováveis intermitentes. Em razão disso, esses eletrolisadores tendem a operar com suprimento de potência constante [@hurtubia_2021].
 

@@ -1,6 +1,9 @@
 fig:podercalorifico
 fig:emissao
+tab:eletrolisadores
 fig:ipca
+fig:cambio
+tab:fc
 introdução
 o-desafio-do-h₂-verde
 estrutura-da-apostila
