@@ -1,3 +1,454 @@
 # MERCADO DE HIDROGÊNIO
 
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# PACOTES: ----------------------------------------------------------------
+library(magrittr, include.only = '%>%')
+library(ggplot2)
+library(plotly)
+library(crosstalk)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
 
+
+# IMPORTAÇÃO DOS DADOS: ---------------------------------------------------
+#
+projetos <- readxl::read_xlsx(path = 'projetos_h2.xlsx',
+                              sheet = 3,
+                              range = 'A3:AI2628') %>% 
+  janitor::clean_names() %>% 
+  dplyr::filter(date_online <= 2026) 
+
+#
+paises <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+# ORGANIZAÇÃO DOS DADOS: --------------------------------------------------
+#
+mapa_projetos <- projetos %>% 
+  dplyr::select(country) %>% 
+  tidyr::drop_na() %>% 
+  table() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::transmute(pais = country,
+                   projetos = n)
+
+#
+tempo_projetos <- projetos %>% 
+  dplyr::select(date_online,
+                technology) %>% 
+  tidyr::drop_na() %>% 
+  dplyr::transmute(
+    ano = date_online, 
+    tecnologia = dplyr::case_when(
+      technology == 'AEM' ~ 'Eletrólise',              
+      technology == 'ALK' ~ 'Eletrólise',               
+      technology == 'Biomass' ~ 'Biomassa',           
+      technology == 'Biomass w CCUS' ~ 'Fóssil + CCUS',    
+      technology == 'Coal w CCUS' ~ 'Fóssil + CCUS',       
+      technology == 'NG w CCUS' ~ 'Fóssil + CCUS',         
+      technology == 'Oil w CCUS' ~ 'Fóssil + CCUS',        
+      technology == 'Other' ~ 'Outras',             
+      technology == 'Other electrolysis' ~ 'Eletrólise',
+      technology == 'Other Electrolysis' ~ 'Eletrólise',
+      technology == 'PEM' ~ 'Eletrólise',               
+      technology == 'SOEC' ~ 'Eletrólise')) %>% 
+  table() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::transmute(ano = as.numeric(ano),
+                   tecnologia = tecnologia,
+                   projetos = n) %>% 
+  dplyr::group_by(tecnologia) %>% 
+  dplyr::mutate(acumulado = cumsum(projetos)) %>% 
+  dplyr::ungroup() 
+
+#
+tecnologias_projetos <- projetos %>% 
+  dplyr::select(technology) %>% 
+  tidyr::drop_na() %>% 
+  dplyr::transmute(tecnologia = dplyr::case_when(
+    technology == 'AEM' ~ 'Eletrólise - AEM',              
+    technology == 'ALK' ~ 'Eletrólise - ALK',               
+    technology == 'Biomass' ~ 'Biomassa',           
+    technology == 'Biomass w CCUS' ~ 'Biomassa + CCUS',    
+    technology == 'Coal w CCUS' ~ 'Gaseificação de Carvão + CCUS',       
+    technology == 'NG w CCUS' ~ 'Reforma de Gás Natural + CCUS',         
+    technology == 'Oil w CCUS' ~ 'Processos Baseados em Óleo + CCUS',        
+    technology == 'Other' ~ 'Outras',             
+    technology == 'Other electrolysis' ~ 'Eletrólise - Não Divulgado',
+    technology == 'Other Electrolysis' ~ 'Eletrólise - Não Divulgado',
+    technology == 'PEM' ~ 'Eletrólise - PEM',               
+    technology == 'SOEC' ~ 'Eletrólise - SOEC')) %>% 
+  table() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::transmute(tecnologia = tecnologia,
+                   projetos = n,
+                   proporcao = n/sum(n)) %>% 
+  dplyr::arrange(desc(projetos)) %>% 
+  dplyr::mutate(tecnologia = forcats::fct_reorder(tecnologia, projetos)) %>% 
+  dplyr::mutate(proporcao = scales::percent(proporcao,
+                                            decimal.mark = ',',
+                                            accuracy = 0.01))
+
+#
+fonte_eletrolise <- projetos %>% 
+  dplyr::transmute(fonte = technology_electricity_details) %>% 
+  tidyr::drop_na() %>% 
+  dplyr::filter(!fonte %in% c('Unknown', 'N/A', 'Others/Various')) %>% 
+  table() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::transmute(fonte = dplyr::case_when(
+    fonte == 'Solar PV' ~ 'Solar Fotovoltaica',
+    fonte == 'Onshore wind' ~ 'Eólica (Onshore)',
+    fonte == 'Hydropower' ~ 'Hidrelétrica',
+    fonte == 'Offshore wind' ~ 'Eólica (Offshore)'),
+  quantidade = n,
+  proporcao = n/sum(n)) %>% 
+  dplyr::arrange(desc(quantidade)) %>% 
+  dplyr::mutate(fonte = forcats::fct_reorder(fonte, quantidade)) %>% 
+  dplyr::mutate(proporcao = scales::percent(proporcao,
+                                            decimal.mark = ',',
+                                            accuracy = 0.01)) 
+
+#
+usos <- projetos %>% 
+  dplyr::select(project_name,
+                end_use_refining,                                         
+                end_use_ammonia,                                          
+                end_use_methanol,                                         
+                end_use_iron_steel,                                      
+                end_use_other_ind,                                       
+                end_use_mobility,                                        
+                end_use_power,                                           
+                end_use_grid_inj,                                       
+                end_use_chp,                                            
+                end_use_domestic_heat,                                 
+                end_use_biofuels,                                        
+                end_use_synfuels,                                        
+                end_use_ch4_grid_inj,                                  
+                end_use_ch4_mobility) %>% 
+  tidyr::pivot_longer(cols = -project_name,
+                      names_to = 'uso',
+                      values_to = 'valor') %>% 
+  tidyr::drop_na() %>% 
+  dplyr::transmute(
+    uso = dplyr::case_when(
+      uso == "end_use_mobility"      ~ "Mobilidade",
+      uso == "end_use_iron_steel"    ~ "Ferro e Aço",
+      uso == "end_use_ammonia"       ~ "Produção de Amônia",
+      uso == "end_use_other_ind"     ~ "Outras Aplicações Industriais",
+      uso == "end_use_ch4_grid_inj"  ~ "Injeção de Metano Sintético na Rede de Gás",
+      uso == "end_use_methanol"      ~ "Produção de Metanol",
+      uso == "end_use_power"         ~ "Geração de Energia Elétrica",
+      uso == "end_use_chp"           ~ "Cogeração de Calor e Energia (CHP)",
+      uso == "end_use_grid_inj"      ~ "Injeção de Hidrogênio na Rede de Gás",
+      uso == "end_use_domestic_heat" ~ "Aquecimento Residencial",
+      uso == "end_use_synfuels"      ~ "Produção de Combustíveis Sintéticos",
+      uso == "end_use_ch4_mobility"  ~ "Mobilidade com Metano Sintético",
+      uso == "end_use_refining"      ~ "Refino de Petróleo",
+      uso == "end_use_biofuels"      ~ "Produção de Biocombustíveis",
+      TRUE ~ uso)) %>% 
+  table() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::transmute(uso = uso,
+                   quantidade = n,
+                   proporcao = n/sum(n)) %>% 
+  dplyr::arrange(desc(quantidade)) %>% 
+  dplyr::mutate(uso = forcats::fct_reorder(uso, quantidade)) %>% 
+  dplyr::mutate(proporcao = scales::percent(proporcao,
+                                            decimal.mark = ',',
+                                            accuracy = 0.01))
+
+#
+capacidade <- projetos %>% 
+  dplyr::select(capacity_nm3_h2_h,
+                technology) %>% 
+  dplyr::transmute(
+    capacidade = capacity_nm3_h2_h, 
+    tecnologia = dplyr::case_when(
+      technology == 'AEM' ~ 'Eletrólise',              
+      technology == 'ALK' ~ 'Eletrólise',               
+      technology == 'Biomass' ~ 'Biomassa',           
+      technology == 'Biomass w CCUS' ~ 'Fóssil + CCUS',    
+      technology == 'Coal w CCUS' ~ 'Fóssil + CCUS',       
+      technology == 'NG w CCUS' ~ 'Fóssil + CCUS',         
+      technology == 'Oil w CCUS' ~ 'Fóssil + CCUS',        
+      technology == 'Other' ~ 'Outras',             
+      technology == 'Other electrolysis' ~ 'Eletrólise',
+      technology == 'Other Electrolysis' ~ 'Eletrólise',
+      technology == 'PEM' ~ 'Eletrólise',               
+      technology == 'SOEC' ~ 'Eletrólise')) %>% 
+  tidyr::drop_na() %>% 
+  dplyr::group_by(tecnologia) %>% 
+  dplyr::summarise(media = round(mean(capacidade),1),
+                   mediana = round(median(capacidade),1),
+                   desvio = round(sd(capacidade),1),
+                   maximo = round(max(capacidade),1),
+                   minimo = round(min(capacidade),1))
+
+# VISUALIZAÇÃO: -----------------------------------------------------------
+###############
+mapa_projetos_graf <- paises %>%
+  dplyr::left_join(mapa_projetos, by = c("iso_a3" = "pais"))
+
+mapa_projetos_graf <- ggplot(mapa_projetos_graf) +
+  geom_sf(aes(fill = projetos,
+              text = paste0('País: ', name_pt,
+                            '<br>Projetos: ', projetos)), 
+          color = 'white', 
+          linewidth = 0.1) +
+  labs(fill = '') +
+  scale_fill_viridis_c() +
+  theme_minimal() + 
+  theme(
+    axis.title = element_blank(),
+    axis.text  = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+
+mapa_projetos_graf_i <- plotly::ggplotly(mapa_projetos_graf,
+                                  tooltip = 'text') 
+###############
+
+###############
+tempo_projetos_graf <- tempo_projetos %>% 
+  ggplot() + 
+  geom_point(mapping = ggplot2::aes(
+  x = ano, y = acumulado, color = tecnologia,
+  group = 1,
+  text = paste0('Ano: ', ano,
+                '<br>Novos Projetos no Ano: ', projetos,
+                '<br>Acumulado no Ano: ', acumulado)),
+  size = .75) +
+  
+  ggplot2::geom_line(mapping = ggplot2::aes(
+    x = ano, y = acumulado, color = tecnologia,
+    group = 1,
+    text = paste0('Ano: ', ano,
+                  '<br>Novos Projetos no Ano: ', projetos,
+                  '<br>Acumulado no Ano: ', acumulado)),
+    size = .5) +
+  ggplot2::labs(title = '',
+                color = '',
+                x = 'Anos',
+                y = 'Projetos em Operação (Acumulado)') + 
+  scale_x_continuous(
+    breaks = seq(1965,2026, 5)) +
+  ggplot2::scale_color_manual(values = c('Eletrólise' = '#2e7d32', 
+                                         'Fóssil + CCUS' = '#0088b9',
+                                         'Biomassa' = '#b64780', 
+                                         'Outras' = '#eb9929')) +
+  ggplot2::theme_light()
+
+tempo_projetos_graf_i  <- plotly::ggplotly(tempo_projetos_graf, tooltip = 'text') %>% 
+  plotly::layout(
+    legend = list(
+      orientation = "h",   # horizontal
+      x = 0.5,             # centraliza
+      xanchor = "center",
+      y = -0.2             # posição abaixo do gráfico
+    )
+  )
+###############
+
+###############
+fonte_eletrolise_graf <- fonte_eletrolise %>% 
+  ggplot() +
+  geom_col(aes(x = quantidade, y = fonte,
+               group = 1,
+               text = paste0('Fonte: ', fonte,
+                             '<br>Proporção: ', proporcao,
+                             '<br>Projetos: ', quantidade)),
+           fill = '#2e7d32',
+           width = 0.4) + 
+  labs(title = '',
+       y = 'Fontes de Energia (Projetos de Eletrólise)',
+       x = 'Nº de Projetos') + 
+  ggplot2::theme_light()
+
+fonte_eletrolise_graf  <- plotly::ggplotly(fonte_eletrolise_graf, 
+                                           tooltip = 'text')
+
+fonte_eletrolise_graf
+###############
+
+###############
+usos_graf <- usos %>% 
+  ggplot() +
+  geom_col(aes(x = quantidade, y = uso,
+               group = 1,
+               text = paste0('Uso: ', uso,
+                             '<br>Proporção: ', proporcao,
+                             '<br>Projetos: ', quantidade)),
+           fill = '#2e7d32',
+           width = 0.9) + 
+  labs(title = '',
+       y = 'Setores de Aplicação do Hidrogênio',
+       x = 'Nº de Projetos') + 
+  ggplot2::theme_light()
+
+usos_graf <- plotly::ggplotly(usos_graf, 
+                              tooltip = 'text')
+
+###############
+
+###############
+tecnologias_projetos_graf <- tecnologias_projetos %>% 
+  ggplot() +
+  geom_col(aes(x = projetos, y = tecnologia,
+               group = 1,
+               text = paste0('Tecnologia: ', tecnologia,
+                             '<br>Proporção: ', proporcao,
+                             '<br>Projetos: ', projetos)),
+           fill = '#2e7d32',
+           width = 0.9) + 
+  labs(title = '',
+       y = 'Tecnologias de Produção de Hidrogênio',
+       x = 'Nº de Projetos') + 
+  ggplot2::theme_light()
+
+tecnologias_projetos_graf <- plotly::ggplotly(tecnologias_projetos_graf, 
+                                              tooltip = 'text')
+
+###############
+```
+
+## Oferta de H₂
+
+A análise da oferta global de hidrogênio de baixa emissão apresentada neste capítulo fundamenta-se na Hydrogen Production Projects Database [@iea_h2_production_2025], organizada pela International Energy Agency (IEA) e atualizada até agosto de 2025. A base contempla projetos comissionados desde o ano 2000, bem como projetos em planejamento ou em construção, cujo objetivo seja reduzir emissões associadas à produção de hidrogênio ou introduzir o hidrogênio como vetor energético em novas aplicações com potencial de baixa emissão de carbono.
+
+A base reúne 2.626 projetos distribuídos globalmente. Os empreendimentos são classificados segundo tecnologia de produção, produto final, setor de uso, país de localização e capacidade normalizada estimada. Para projetos de eletrólise, a IEA utiliza fatores de conversão padronizados para estimar capacidade equivalente em MW de hidrogênio (LHV), permitindo comparabilidade entre iniciativas heterogêneas.
+
+Essa estrutura metodológica permite examinar a oferta de hidrogênio sob múltiplas dimensões tecnológicas, geográficas e temporais, oferecendo base consistente para análises estruturais e estratégicas.
+
+A distribuição espacial desses empreendimentos pode ser visualizada na Figura \@ref(fig:mapapaises), na qual se apresenta a concentração de projetos de produção de hidrogênio de baixo carbono em operação por país [@iea_h2_production_2025]. 
+
+```{r mapapaises, fig.cap="Quantidade de Projetos de Produção de H₂ de Baixo Carbono por País", echo=FALSE, message=FALSE, warning=FALSE}
+mapa_projetos_graf_i
+```
+
+A distribuição geográfica dos projetos de produção de hidrogênio de baixo carbono em operação até 2026 evidencia uma elevada concentração em economias desenvolvidas, particularmente na Europa Ocidental. A Alemanha lidera de forma expressiva esse processo, com 136 projetos em operação desde o início do período analisado, seguida pelos Estados Unidos, com 89 projetos, e pela China, com 69 iniciativas. Na sequência, destacam-se países europeus como França e Reino Unido, ambos com 65 projetos, além da Espanha, com 53 projetos, e dos Países Baixos, com 41 projetos.
+
+Ainda no contexto europeu, observa-se a presença de países com menor dimensão territorial, mas elevada densidade tecnológica, como Itália e Dinamarca, com 38 e 37 projetos, respectivamente, bem como Noruega, Áustria, Suécia, Suíça e Finlândia, que apresentam entre 29 e 15 projetos em operação. Fora do eixo europeu e norte-americano, Austrália e Índia também se destacam, com 38 e 36 projetos, respectivamente, ao passo que o Japão contabiliza 31 iniciativas e o Canadá, 27 projetos.
+
+Nesse cenário internacional, o Brasil figura entre os vinte países com maior número de projetos em operação, totalizando 16 iniciativas no período considerado. Embora esse quantitativo ainda seja substancialmente inferior ao observado nas economias líderes, como Alemanha e Estados Unidos, o país apresenta número de projetos equivalente ao de economias industrializadas como Suíça e superior ao registrado em países como Finlândia e Chile, que contabilizam 15 e 14 projetos, respectivamente.
+
+A posição relativa do Brasil nesse ranking sugere que, apesar da disponibilidade de recursos renováveis competitivos, o país ainda se encontra em estágio inicial de consolidação de sua base produtiva de hidrogênio de baixo carbono quando comparado aos principais polos tecnológicos globais. Tal evidência reforça a importância de políticas públicas e instrumentos de financiamento que permitam ampliar o número de projetos em operação, de modo a viabilizar a inserção mais robusta do país no mercado internacional emergente de hidrogênio limpo.
+
+A evolução temporal do número de projetos de produção de hidrogênio de baixo carbono em operação revela dinâmicas bastante distintas entre as rotas tecnológicas consideradas. Estas tendências podem ser observadas em \@ref(fig:tempotec) [@iea_h2_production_2025]. 
+
+```{r tempotec, fig.cap="Evolução dos Projetos de Produção de H₂ de Baixo Carbono por Tecnologia", echo=FALSE, message=FALSE, warning=FALSE}
+tempo_projetos_graf_i
+```
+
+No caso das tecnologias baseadas em biomassa, observa-se uma trajetória de difusão relativamente recente. Até 2012 não há registro de novos projetos em operação, sendo o primeiro empreendimento contabilizado apenas em 2013. A partir de então, a expansão ocorre de forma gradual, com acréscimos pontuais ao longo da década seguinte. Esse movimento torna-se mais expressivo a partir de 2020, quando passam a ser observadas entradas anuais mais frequentes de novos projetos, culminando em oito novas unidades em operação apenas no ano de 2026. Como resultado, o número acumulado de projetos baseados em biomassa atinge 27 iniciativas ao final do período analisado.
+
+Em contraste, a trajetória das tecnologias de eletrólise apresenta um processo de adoção significativamente mais acelerado e contínuo ao longo do tempo. Registros iniciais remontam à década de 1960, com incrementos adicionais nas décadas subsequentes. Contudo, é a partir dos anos 2000 que se observa uma intensificação consistente na entrada de novos projetos em operação. Entre 2000 e 2010, o número acumulado cresce de 13 para 83 iniciativas, refletindo uma ampliação progressiva da adoção dessa rota tecnológica. Esse movimento se acelera ainda mais na década seguinte, com sucessivos aumentos anuais que conduzem o total acumulado a 398 projetos em 2022 e 468 em 2023. Nos anos mais recentes, o ritmo de expansão torna-se ainda mais pronunciado, com 115 novos projetos entrando em operação em 2025 e 283 em 2026, elevando o total acumulado para 924 projetos ao final do horizonte analisado.
+
+A rota de produção baseada em combustíveis fósseis acoplados à captura, utilização e armazenamento de carbono (CCUS) apresenta trajetória intermediária. Após o registro inicial de um projeto em 1982, a difusão permanece limitada por várias décadas, com poucos acréscimos ao longo dos anos 2000. A partir de 2013, observa-se maior dinamismo, com três novos projetos nesse ano e cinco em 2015. Ainda assim, o crescimento permanece relativamente moderado quando comparado à eletrólise. Somente em 2026 verifica-se uma ampliação mais significativa, com a entrada de 18 novos projetos em operação, resultando em um total acumulado de 43 iniciativas ao final do período.
+
+Por fim, as tecnologias classificadas como outras rotas de produção apresentam participação marginal ao longo de toda a série temporal. O primeiro projeto registrado ocorre apenas em 2015 e, mesmo com incrementos pontuais em anos subsequentes, o crescimento permanece limitado, alcançando 12 projetos acumulados em operação até 2026.
+
+De forma geral, a análise temporal evidencia uma clara predominância da eletrólise como principal rota tecnológica na expansão recente da capacidade global de produção de hidrogênio de baixo carbono, especialmente a partir da década de 2010. Enquanto tecnologias baseadas em biomassa e em combustíveis fósseis com CCUS apresentam crescimento mais gradual, a eletrólise destaca-se pelo ritmo acelerado de entrada de novos projetos em operação nos anos mais recentes, indicando uma tendência de consolidação dessa rota no contexto da transição energética.
+
+A distribuição dos projetos de produção de hidrogênio de baixo carbono por rota tecnológica, apresentada na Figura \@ref(fig:tecdetalhe), permite identificar de forma mais clara quais caminhos vêm sendo efetivamente adotados no processo de descarbonização da oferta global de hidrogênio [@iea_h2_production_2025].
+
+```{r tecdetalhe, fig.cap="Quantidade de Projetos por Tecnologia de Produção de H₂ de Baixa Emissão de Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+tecnologias_projetos_graf
+```
+
+Observa-se, em primeiro lugar, uma predominância expressiva das tecnologias baseadas em eletrólise da água. Projetos cuja tecnologia específica de eletrólise não foi divulgada representam 318 iniciativas (31,61% do total), seguidos pelos sistemas de eletrólise por membrana de troca de prótons (PEM), com 307 projetos (30,52%), e pela eletrólise alcalina (ALK), com 238 projetos (23,66%). Em conjunto, essas três categorias respondem por parcela substancial dos projetos em operação, evidenciando a centralidade da eletrólise como principal rota tecnológica adotada para a produção de hidrogênio de baixo carbono. Tecnologias eletrolíticas mais recentes, como as células eletrolíticas de óxido sólido (SOEC) e os sistemas baseados em membrana de troca aniônica (AEM), apresentam menor difusão relativa, com 35 (3,48%) e 26 (2,58%) projetos, respectivamente, refletindo seu estágio ainda emergente de maturidade tecnológica.
+
+Em contraste, as rotas baseadas em combustíveis fósseis associadas à captura, utilização e armazenamento de carbono (CCUS) apresentam participação significativamente inferior. Projetos de produção de hidrogênio a partir da reforma de gás natural com CCUS somam 28 iniciativas (2,78%), enquanto processos baseados em óleo e gaseificação de carvão com CCUS totalizam 7 (0,70%) e 5 (0,50%) projetos, respectivamente. Ainda que tais rotas possam reduzir substancialmente as emissões quando comparadas aos processos fósseis convencionais, sua participação reduzida sugere menor adoção relativa frente às alternativas eletrolíticas.
+
+As tecnologias baseadas em biomassa, por sua vez, contabilizam 27 projetos (2,68%), enquanto iniciativas que combinam biomassa com sistemas de captura de carbono somam apenas 3 projetos (0,30%). Outras rotas tecnológicas, que incluem abordagens alternativas como processos fotoeletrocatalíticos ou separação por membranas a partir de correntes gasosas industriais residuais, representam 12 iniciativas (1,19%) no conjunto analisado.
+
+Sob a perspectiva da neutralidade de carbono, a predominância das rotas eletrolíticas assume particular relevância. A produção de hidrogênio via eletrólise, quando alimentada por fontes renováveis de eletricidade, apresenta potencial de emissões significativamente inferior ao das rotas baseadas em combustíveis fósseis, mesmo quando estas são combinadas com tecnologias de captura de carbono. Nesse sentido, a elevada participação das tecnologias eletrolíticas no total de projetos em operação sugere um alinhamento entre a expansão da oferta global de hidrogênio e os objetivos de mitigação de emissões associados à transição energética. Ainda que rotas fósseis com CCUS e processos baseados em biomassa possam desempenhar papel complementar, a estrutura tecnológica atualmente observada indica que as tecnologias potencialmente mais compatíveis com cenários de neutralidade climática são também aquelas mais amplamente empregadas no conjunto de projetos analisados.
+
+A heterogeneidade entre os empreendimentos de produção de hidrogênio de baixo carbono pode ser melhor compreendida a partir da análise da capacidade instalada dos projetos. A Tabela \@ref(tab:capacidades) apresenta uma síntese estatística da capacidade de produção em Nm³ H₂/h, expressa em termos de média, mediana, desvio padrão, valores máximos e mínimos observados no conjunto de projetos analisados [@iea_h2_production_2025].
+
+```{r capacidades, tab.cap="Estatística Descritiva da Capacidade de Produção dos Projetos de H₂ de Baixo Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+
+capacidade %>% 
+  gt(caption = 'Estatística Descritiva da Capacidade de Produção dos Projetos de H₂ de Baixo Carbono (Nm³ H₂/h)') %>%
+  cols_label(
+    tecnologia = "Tecnologia de Produção",
+    media = 'Média',
+    mediana = 'Mediana',
+    desvio = 'Desvio Padrão',
+    maximo = 'Máximo',
+    minimo = 'Mínimo'
+  ) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "#2e7d32"),
+      cell_text(color = "#e8f5e9", weight = "bold")
+    ),
+    locations = cells_column_labels()
+  ) 
+```
+
+A comparação entre a média e a mediana da capacidade de produção fornece evidências importantes acerca da distribuição do porte dos empreendimentos. Diferenças significativas entre essas duas medidas de tendência central indicam a presença de assimetrias na distribuição, sugerindo que uma parcela reduzida de projetos de grande escala exerce influência desproporcional sobre o valor médio observado. Esse comportamento é reforçado pelo desvio padrão, que captura o grau de dispersão da capacidade produtiva entre os projetos, refletindo a coexistência de iniciativas de pequeno porte — frequentemente associadas a plantas piloto ou demonstrativas — e unidades industriais de maior escala.
+
+Adicionalmente, a análise dos valores extremos, representados pelas capacidades máxima e mínima, evidencia a amplitude do intervalo de variação entre os projetos em operação. Tal variação está associada tanto à maturidade tecnológica das rotas de produção quanto às diferenças nas estratégias de implementação, que podem variar desde aplicações descentralizadas voltadas ao atendimento de demandas locais até projetos de maior escala destinados à integração com cadeias industriais intensivas em energia.
+
+Nesse sentido, a estatística descritiva da capacidade de produção permite caracterizar não apenas o porte médio dos empreendimentos atualmente em operação, mas também o grau de heterogeneidade estrutural presente na oferta de hidrogênio de baixo carbono, elemento relevante para a análise comparativa de viabilidade técnica e econômica entre diferentes configurações tecnológicas.
+
+De forma geral, observa-se que as rotas baseadas em combustíveis fósseis associadas à captura e armazenamento de carbono (CCUS) tendem a apresentar maiores valores médios e máximos de capacidade produtiva quando comparadas às tecnologias baseadas em eletrólise ou biomassa. Esse resultado está associado ao fato de que tais processos derivam de rotas industriais já consolidadas — como a reforma a vapor do gás natural — tradicionalmente implementadas em larga escala para o atendimento de demandas industriais contínuas, como a produção de amônia ou o refino de petróleo. Nesse sentido, a adaptação dessas plantas para incorporar sistemas de captura de carbono permite que projetos de maior porte sejam operacionalizados com relativa maturidade tecnológica.
+
+Por outro lado, as tecnologias baseadas em eletrólise, embora predominantes em número absoluto de projetos, apresentam, em média, menores capacidades individuais de produção. A diferença entre média e mediana observada para essas rotas sugere a presença de elevada assimetria na distribuição dos projetos, com grande concentração de unidades de pequeno e médio porte — frequentemente associadas a plantas piloto, projetos demonstrativos ou iniciativas descentralizadas de produção vinculadas a fontes renováveis específicas, como parques solares ou eólicos dedicados.
+
+Essa característica implica que a expansão da capacidade instalada via eletrólise ocorre predominantemente por meio da multiplicação de projetos de menor escala, em oposição à implementação de unidades industriais de grande porte. Tal padrão é consistente com o estágio atual de maturidade tecnológica dessas rotas, bem como com a necessidade de integração geográfica com a oferta de energia renovável, que pode limitar a viabilidade técnica e econômica de projetos de maior escala em determinadas localidades.
+
+Adicionalmente, o elevado desvio padrão associado às tecnologias eletrolíticas indica significativa variabilidade no porte dos empreendimentos, refletindo diferentes estratégias de implantação — desde aplicações voltadas à mobilidade ou ao fornecimento de hidrogênio para usos locais até projetos destinados à produção de combustíveis sintéticos em escala industrial.
+
+Nesse contexto, a estatística descritiva da capacidade de produção evidencia que as tecnologias mais maduras, ainda que potencialmente menos neutras em carbono sob a perspectiva do ciclo de vida, tendem a ser implementadas em maior escala individual, enquanto as rotas mais alinhadas à neutralidade climática — como a eletrólise alimentada por fontes renováveis — apresentam maior difusão em termos de número de projetos, porém com menor capacidade média por unidade. Essa distinção possui implicações diretas sobre a dinâmica de expansão da oferta de hidrogênio de baixo carbono e sobre a análise de viabilidade financeira associada às diferentes rotas tecnológicas.
+
+A composição das fontes de energia elétrica utilizadas nos projetos de produção de hidrogênio por eletrólise é apresentada na Figura \@ref(fig:fonteenergia). A análise dos dados evidencia que a escolha da fonte renovável constitui elemento central na configuração tecnológica e econômica dos empreendimentos, uma vez que o custo e a disponibilidade da eletricidade representam parcela significativa do OPEX desses projetos [@iea_h2_production_2025].
+
+```{r fonteenergia, fig.cap="Distribuição das Fontes de Energia Renovável Utilizadas em Projetos de Produção de H₂ por Eletrólise", echo=FALSE, message=FALSE, warning=FALSE}
+fonte_eletrolise_graf
+```
+
+Observa-se que determinadas fontes de energia elétrica renovável concentram maior número absoluto de projetos, refletindo não apenas sua disponibilidade geográfica, mas também o grau de maturidade tecnológica e a competitividade econômica associada à sua utilização. Em termos proporcionais, a predominância de algumas dessas fontes no conjunto dos projetos indica que a expansão recente da eletrólise tem ocorrido de forma fortemente vinculada à implantação de sistemas de geração dedicados, particularmente em contextos nos quais o acesso à eletricidade de baixo custo e baixa intensidade de carbono constitui vantagem comparativa.
+
+Adicionalmente, a distribuição observada sugere que a integração entre projetos de eletrólise e determinadas tecnologias renováveis pode estar associada a estratégias distintas de implantação, tais como a utilização de fontes intermitentes com elevada disponibilidade regional ou a combinação de múltiplas fontes energéticas com o objetivo de reduzir a variabilidade do fornecimento elétrico ao eletrolisador. Tal arranjo possui implicações diretas sobre o fator de capacidade operacional do sistema e, consequentemente, sobre o custo nivelado de produção do hidrogênio ($LCOH$).
+
+Nesse sentido, a análise comparativa das proporções apresentadas permite inferir que a viabilidade econômica dos projetos de eletrólise encontra-se fortemente condicionada à escolha da fonte de energia elétrica, reforçando a importância da integração entre políticas de expansão da geração renovável e estratégias de desenvolvimento da cadeia produtiva do hidrogênio de baixo carbono.
+
+## Demanda de H₂
+
+A demanda por hidrogênio de baixa emissão de carbono foi avaliada a partir da mesma base de dados utilizada na análise da oferta, permitindo a identificação dos principais setores de aplicação final dos projetos atualmente em operação ou em desenvolvimento.
+
+A distribuição dos projetos segundo seus respectivos usos finais é apresentada na Figura \@ref(fig:usohidrogenio), na qual se observa a quantidade de iniciativas destinadas a cada segmento de aplicação do hidrogênio.
+
+```{r usohidrogenio, fig.cap="Proporção dos Usos Finais do H₂ nos Projetos de Produção de Hidrogênio de Baixa Emissão de Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+usos_graf
+```
+
+A análise comparativa evidencia que o principal destino dos projetos de hidrogênio de baixa emissão de carbono está associado ao setor de mobilidade, que concentra 374 iniciativas, correspondendo a 32,64% do total. Esse resultado sugere uma crescente incorporação do hidrogênio como vetor energético em aplicações relacionadas ao transporte, especialmente em contextos nos quais a eletrificação direta apresenta limitações técnicas ou econômicas.
+
+Na sequência, destacam-se as chamadas outras aplicações industriais, com 172 projetos (15,01%), bem como a geração de energia elétrica, que contabiliza 167 iniciativas (14,57%). Esses resultados indicam que, além de seu uso como insumo produtivo, o hidrogênio passa a desempenhar papel relevante como fonte energética em sistemas industriais e no fornecimento de eletricidade.
+
+Aplicações associadas à infraestrutura de gás também apresentam participação significativa. A injeção direta de hidrogênio na rede de gás natural reúne 78 projetos (6,81%), enquanto a injeção de metano sintético na rede contabiliza 60 iniciativas (5,24%). Tais usos refletem estratégias voltadas à descarbonização gradual das redes existentes por meio da substituição parcial de combustíveis fósseis.
+
+No âmbito das aplicações industriais tradicionais, observam-se projetos destinados à produção de amônia (61 projetos; 5,32%), ao refino de petróleo (49 projetos; 4,28%) e à produção de metanol (42 projetos; 3,66%). Embora representem menor proporção relativa quando comparados aos setores de mobilidade e energia, esses segmentos permanecem relevantes por constituírem aplicações historicamente intensivas no uso de hidrogênio.
+
+Outros usos identificados incluem a produção de combustíveis sintéticos (35 projetos; 3,05%), aplicações na indústria de ferro e aço (34 projetos; 2,97%) e sistemas de cogeração de calor e energia (29 projetos; 2,53%). Aplicações de menor escala relativa abrangem o aquecimento residencial (22 projetos; 1,92%), a mobilidade baseada em metano sintético (15 projetos; 1,31%) e a produção de biocombustíveis (8 projetos; 0,70%).
+
+De maneira geral, a distribuição observada indica que a difusão do hidrogênio de baixa emissão de carbono não se restringe à substituição de seu equivalente fóssil em aplicações industriais existentes, mas também envolve a expansão para novos usos energéticos, especialmente nos setores de mobilidade e geração de energia elétrica. Essa diversificação tende a ampliar o papel do hidrogênio como vetor energético na transição para sistemas produtivos de menor intensidade de carbono.
+
+## Panorama Global
+
+O panorama conjunto entre oferta e demanda de hidrogênio de baixa emissão de carbono permite estabelecer algumas implicações relevantes sob a perspectiva da viabilidade financeira dos projetos analisados. Conforme discutido ao longo deste capítulo, a análise de viabilidade depende fundamentalmente da estrutura do fluxo de caixa do empreendimento, bem como da taxa de desconto utilizada para trazê-lo a valor presente, refletindo o risco associado ao investimento.
+
+Do ponto de vista temporal, observa-se uma tendência de expansão no número de projetos que entram em operação ao longo dos anos mais recentes, particularmente nas rotas baseadas em eletrólise. Esse movimento sugere um processo de difusão tecnológica ainda em curso, no qual ganhos de escala e aprendizado produtivo podem contribuir para a redução dos custos médios de produção. Em termos financeiros, tais reduções impactam diretamente o CAPEX e o OPEX dos empreendimentos, diminuindo o valor presente dos dispêndios e, consequentemente, o preço de equilíbrio necessário para que o projeto apresente $VPL = 0$, isto é, o $LCOH$.
+
+A análise geográfica evidencia, por sua vez, uma concentração significativa de projetos em economias desenvolvidas, caracterizadas por maior estabilidade institucional, acesso a financiamento de longo prazo e presença de políticas públicas de incentivo. Esses fatores afetam diretamente a Taxa Mínima de Atratividade ($TMA$), reduzindo o custo de capital exigido pelos investidores e aumentando o valor presente dos fluxos de caixa futuros. Em outras palavras, projetos localizados em ambientes macroeconômicos mais estáveis tendem a apresentar maior viabilidade financeira, mesmo quando as características técnicas são semelhantes.
+
+As tecnologias de produção também exercem papel determinante sobre o $LCOH$. Rotas mais intensivas em capital, como determinados sistemas de eletrólise, podem implicar elevados investimentos iniciais, ao passo que rotas baseadas em combustíveis fósseis com captura e armazenamento de carbono incorporam custos adicionais associados à infraestrutura de CCUS. Essas diferenças se refletem na composição do fluxo de caixa e, portanto, no preço mínimo necessário para viabilizar economicamente cada projeto. Adicionalmente, a capacidade produtiva dos empreendimentos influencia a diluição dos custos fixos ao longo do tempo, de modo que projetos de maior escala tendem a apresentar menores custos médios por unidade de hidrogênio produzida, contribuindo para a redução do $LCOH$.
+
+No caso específico da eletrólise, a fonte de energia elétrica utilizada constitui variável crítica para a determinação do OPEX do projeto. Uma vez que o custo da eletricidade representa parcela substancial dos dispêndios operacionais, o acesso a fontes renováveis competitivas impacta diretamente o preço de equilíbrio do hidrogênio produzido. Consequentemente, variações no custo da energia influenciam não apenas o $LCOH$, mas também o custo marginal de abatimento de carbono ($MACC$), na medida em que alteram o diferencial de custos entre o hidrogênio de baixa emissão e seu equivalente produzido a partir de combustíveis fósseis.
+
+Sob a ótica da demanda, a diversificação dos usos finais do hidrogênio indica potencial ampliação de mercados consumidores, especialmente nos setores de mobilidade e geração de energia. A consolidação desses mercados tende a reduzir a incerteza associada à comercialização do produto, contribuindo para a diminuição do risco percebido pelos investidores e, portanto, da taxa de desconto aplicada na avaliação financeira. Tal dinâmica pode favorecer a redução do $LCOH$ ao longo do tempo e tornar mais competitivo o hidrogênio de baixa emissão frente às tecnologias atualmente predominantes.
+
+Por fim, cabe observar que foram realizadas análises específicas considerando a distribuição geográfica dos projetos, as tecnologias de produção empregadas, suas respectivas capacidades produtivas, as fontes de energia elétrica utilizadas no caso da eletrólise, bem como a evolução temporal das iniciativas. Em cada uma dessas análises, o número total de projetos considerados pode divergir, uma vez que a base de dados apresenta valores omissos para determinadas variáveis em diferentes empreendimentos. Assim, optou-se por realizar cada análise utilizando exclusivamente os valores disponíveis para a respectiva dimensão avaliada.

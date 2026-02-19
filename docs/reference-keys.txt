@@ -4,6 +4,12 @@ tab:eletrolisadores
 fig:ipca
 fig:cambio
 tab:fc
+fig:mapapaises
+fig:tempotec
+fig:tecdetalhe
+tab:capacidades
+fig:fonteenergia
+fig:usohidrogenio
 introdução
 o-desafio-do-h₂-verde
 estrutura-da-apostila
@@ -12,3 +18,6 @@ princípios-de-finanças
 a-técnica-de-análise-financeira
 os-4-princípios-básicos
 mercado-de-hidrogênio
+oferta-de-h₂
+demanda-de-h₂
+panorama-global
