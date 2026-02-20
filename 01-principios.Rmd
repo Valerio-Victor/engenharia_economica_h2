@@ -410,7 +410,7 @@ Além disso, o sistema tributário impacta diretamente o fluxo de caixa do empre
 
 Portanto, para se construir o fluxo de caixa de um projeto, não basta subtrair o OPEX da receita de vendas. É necessário considerar tributos, despesas financeiras e estrutura de financiamento. De maneira simplificada, a organização do fluxo de caixa pode ser representada conforme \@ref(tab:fc) a seguir.
 
-```{r fc, tab.cap="Estrutura de Organização do FLuxo de Caixa (Brasil)", echo=FALSE, message=FALSE, warning=FALSE}
+```{r fc, tab.cap="Estrutura de Organização do Fluxo de Caixa (Brasil)", echo=FALSE, message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 library(gt)
 

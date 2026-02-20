@@ -1,0 +1,13 @@
+name: calculadora_lcoh
+title: calculadora_lcoh
+username: profvictorunifei
+account: profvictorunifei
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16720691
+bundleId: 11605446
+url: https://profvictorunifei.shinyapps.io/calculadora_lcoh/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: _bookdown.yml|_output.yml|01-principios.Rmd|02-mercado.Rmd|03-referencias.Rmd|abnt_numerico.csl|book.bib|docx/versao_word.docx|Engenharia_Economica_H2.log|Engenharia_Economica_H2_files/figure-html/unnamed-chunk-3-1.png|graficos.R|hipotese_lcoh.csv|index.Rmd|licenca.png|packages.bib|preamble.tex|projetos_h2.xlsx|README.md|style.css|docs

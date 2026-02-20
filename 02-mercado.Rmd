@@ -452,3 +452,21 @@ No caso específico da eletrólise, a fonte de energia elétrica utilizada const
 Sob a ótica da demanda, a diversificação dos usos finais do hidrogênio indica potencial ampliação de mercados consumidores, especialmente nos setores de mobilidade e geração de energia. A consolidação desses mercados tende a reduzir a incerteza associada à comercialização do produto, contribuindo para a diminuição do risco percebido pelos investidores e, portanto, da taxa de desconto aplicada na avaliação financeira. Tal dinâmica pode favorecer a redução do $LCOH$ ao longo do tempo e tornar mais competitivo o hidrogênio de baixa emissão frente às tecnologias atualmente predominantes.
 
 Por fim, cabe observar que foram realizadas análises específicas considerando a distribuição geográfica dos projetos, as tecnologias de produção empregadas, suas respectivas capacidades produtivas, as fontes de energia elétrica utilizadas no caso da eletrólise, bem como a evolução temporal das iniciativas. Em cada uma dessas análises, o número total de projetos considerados pode divergir, uma vez que a base de dados apresenta valores omissos para determinadas variáveis em diferentes empreendimentos. Assim, optou-se por realizar cada análise utilizando exclusivamente os valores disponíveis para a respectiva dimensão avaliada.
+
+## Calculadora LCOH
+
+Com o objetivo de complementar a análise apresentada ao longo deste capítulo e aproximar o leitor de aplicações práticas dos conceitos discutidos, está sendo disponibilizada uma calculadora interativa do Custo Nivelado de Produção de Hidrogênio Verde (Levelised Cost of Hydrogen – $LCOH$). Essa ferramenta permite simular o comportamento do custo de produção ao longo do tempo sob diferentes premissas tecnológicas e econômicas, tais como fator de capacidade do eletrolisador, custo da eletricidade, taxa mínima de atratividade ($TMA$) e cenário de evolução de custos de capital.
+
+Por meio dos controles interativos disponíveis, recomenda-se que o leitor realize filtros iniciais nas variáveis apresentadas, de modo a construir curvas de LCOH específicas por período e por tecnologia de eletrólise. Essa exploração permite visualizar, de forma dinâmica, como alterações nas condições operacionais e financeiras impactam o custo de produção do hidrogênio ao longo do horizonte do projeto, facilitando a compreensão da sensibilidade do $LCOH$ em relação às principais variáveis que compõem o fluxo de caixa.
+
+A utilização dessa ferramenta deve ser entendida como um exercício aplicado de análise de viabilidade financeira, permitindo avaliar como diferentes configurações tecnológicas e contextos macroeconômicos podem influenciar diretamente a competitividade econômica da produção de hidrogênio verde.
+
+```{=html}
+<iframe 
+  src="https://profvictorunifei.shinyapps.io/calculadora_lcoh/"
+  width="100%" 
+  height="800px" 
+  style="border:none;">
+</iframe>
+```
+

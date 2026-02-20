@@ -37,3 +37,9 @@ pre code {
   margin: 1em 0;
   font-size: 0.95em;
 }
+
+```css
+iframe {
+  width: 100%;
+  border: none;
+}
