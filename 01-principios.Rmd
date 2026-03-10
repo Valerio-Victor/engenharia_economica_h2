@@ -31,7 +31,7 @@ Existem diversas razões que explicam por que uma unidade monetária não preser
 Cumpre ressaltar que, no contexto brasileiro, as taxas de inflação assumem relevância significativa. Na Figura \@ref(fig:ipca), são apresentadas as taxas anuais recentes de inflação, medidas pelo Índice de Preços ao Consumidor Amplo (IPCA), indicador que monitora a variação de preços de uma cesta de bens e serviços representativa do consumo das famílias brasileiras com renda mensal compreendida entre 1 e 40 salários mínimos.
 
 
-```{r ipca, fig.cap="Taxa de Inflação Anual Medida pelo IPCA", echo=FALSE, message=FALSE, warning=FALSE}
+```{r ipca, echo=FALSE, fig.cap="Taxa de Inflação Anual Medida pelo IPCA", message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 
 ipca_ts <- sidrar::get_sidra(api = '/t/1737/n1/all/v/69/p/all/d/v69%202') %>%
@@ -306,7 +306,7 @@ Consequentemente, quanto maior a percepção de risco associada ao projeto, maio
 
 Em primeiro lugar, a taxa de câmbio influencia diretamente os gastos com equipamentos e serviços importados. Projetos de produção de hidrogênio verde frequentemente dependem de eletrolisadores, componentes eletrônicos e sistemas de controle adquiridos no exterior. A desvalorização da moeda nacional eleva o custo desses itens, aumentando o CAPEX e, consequentemente, o $LCOH$ do projeto. Para contextualizar o ambiente cambial relevante às decisões de investimento, apresentam-se na \@ref(fig:cambio) as taxas de câmbio nominal entre o real e o euro, bem como entre o real e o dólar [@bcb_cambio]. 
 
-```{r cambio, fig.cap="Taxa de Câmbio Nominal (Euro e Dólar)", echo=FALSE, message=FALSE, warning=FALSE}
+```{r cambio, echo=FALSE, fig.cap="Taxa de Câmbio Nominal (Euro e Dólar)", message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 library(httr)
 library(jsonlite)
@@ -410,7 +410,7 @@ Além disso, o sistema tributário impacta diretamente o fluxo de caixa do empre
 
 Portanto, para se construir o fluxo de caixa de um projeto, não basta subtrair o OPEX da receita de vendas. É necessário considerar tributos, despesas financeiras e estrutura de financiamento. De maneira simplificada, a organização do fluxo de caixa pode ser representada conforme \@ref(tab:fc) a seguir.
 
-```{r fc, tab.cap="Estrutura de Organização do Fluxo de Caixa (Brasil)", echo=FALSE, message=FALSE, warning=FALSE}
+```{r fc, echo=FALSE, message=FALSE, warning=FALSE, tab.cap="Estrutura de Organização do Fluxo de Caixa (Brasil)"}
 library(magrittr, include.only = '%>%')
 library(gt)
 

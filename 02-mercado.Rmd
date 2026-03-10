@@ -322,7 +322,7 @@ Essa estrutura metodológica permite examinar a oferta de hidrogênio sob múlti
 
 A distribuição espacial desses empreendimentos pode ser visualizada na Figura \@ref(fig:mapapaises), na qual se apresenta a concentração de projetos de produção de hidrogênio de baixo carbono em operação por país [@iea_h2_production_2025]. 
 
-```{r mapapaises, fig.cap="Quantidade de Projetos de Produção de H₂ de Baixo Carbono por País", echo=FALSE, message=FALSE, warning=FALSE}
+```{r mapapaises, echo=FALSE, fig.cap="Quantidade de Projetos de Produção de H₂ de Baixo Carbono por País", message=FALSE, warning=FALSE}
 mapa_projetos_graf_i
 ```
 
@@ -336,7 +336,7 @@ A posição relativa do Brasil nesse ranking sugere que, apesar da disponibilida
 
 A evolução temporal do número de projetos de produção de hidrogênio de baixo carbono em operação revela dinâmicas bastante distintas entre as rotas tecnológicas consideradas. Estas tendências podem ser observadas em \@ref(fig:tempotec) [@iea_h2_production_2025]. 
 
-```{r tempotec, fig.cap="Evolução dos Projetos de Produção de H₂ de Baixo Carbono por Tecnologia", echo=FALSE, message=FALSE, warning=FALSE}
+```{r tempotec, echo=FALSE, fig.cap="Evolução dos Projetos de Produção de H₂ de Baixo Carbono por Tecnologia", message=FALSE, warning=FALSE}
 tempo_projetos_graf_i
 ```
 
@@ -352,7 +352,7 @@ De forma geral, a análise temporal evidencia uma clara predominância da eletr�
 
 A distribuição dos projetos de produção de hidrogênio de baixo carbono por rota tecnológica, apresentada na Figura \@ref(fig:tecdetalhe), permite identificar de forma mais clara quais caminhos vêm sendo efetivamente adotados no processo de descarbonização da oferta global de hidrogênio [@iea_h2_production_2025].
 
-```{r tecdetalhe, fig.cap="Quantidade de Projetos por Tecnologia de Produção de H₂ de Baixa Emissão de Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+```{r tecdetalhe, echo=FALSE, fig.cap="Quantidade de Projetos por Tecnologia de Produção de H₂ de Baixa Emissão de Carbono", message=FALSE, warning=FALSE}
 tecnologias_projetos_graf
 ```
 
@@ -366,7 +366,7 @@ Sob a perspectiva da neutralidade de carbono, a predominância das rotas eletrol
 
 A heterogeneidade entre os empreendimentos de produção de hidrogênio de baixo carbono pode ser melhor compreendida a partir da análise da capacidade instalada dos projetos. A Tabela \@ref(tab:capacidades) apresenta uma síntese estatística da capacidade de produção em Nm³ H₂/h, expressa em termos de média, mediana, desvio padrão, valores máximos e mínimos observados no conjunto de projetos analisados [@iea_h2_production_2025].
 
-```{r capacidades, tab.cap="Estatística Descritiva da Capacidade de Produção dos Projetos de H₂ de Baixo Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+```{r capacidades, echo=FALSE, message=FALSE, warning=FALSE, tab.cap="Estatística Descritiva da Capacidade de Produção dos Projetos de H₂ de Baixo Carbono"}
 
 capacidade %>% 
   gt(caption = 'Estatística Descritiva da Capacidade de Produção dos Projetos de H₂ de Baixo Carbono (Nm³ H₂/h)') %>%
@@ -405,7 +405,7 @@ Nesse contexto, a estatística descritiva da capacidade de produção evidencia 
 
 A composição das fontes de energia elétrica utilizadas nos projetos de produção de hidrogênio por eletrólise é apresentada na Figura \@ref(fig:fonteenergia). A análise dos dados evidencia que a escolha da fonte renovável constitui elemento central na configuração tecnológica e econômica dos empreendimentos, uma vez que o custo e a disponibilidade da eletricidade representam parcela significativa do OPEX desses projetos [@iea_h2_production_2025].
 
-```{r fonteenergia, fig.cap="Distribuição das Fontes de Energia Renovável Utilizadas em Projetos de Produção de H₂ por Eletrólise", echo=FALSE, message=FALSE, warning=FALSE}
+```{r fonteenergia, echo=FALSE, fig.cap="Distribuição das Fontes de Energia Renovável Utilizadas em Projetos de Produção de H₂ por Eletrólise", message=FALSE, warning=FALSE}
 fonte_eletrolise_graf
 ```
 
@@ -421,7 +421,7 @@ A demanda por hidrogênio de baixa emissão de carbono foi avaliada a partir da 
 
 A distribuição dos projetos segundo seus respectivos usos finais é apresentada na Figura \@ref(fig:usohidrogenio), na qual se observa a quantidade de iniciativas destinadas a cada segmento de aplicação do hidrogênio.
 
-```{r usohidrogenio, fig.cap="Proporção dos Usos Finais do H₂ nos Projetos de Produção de Hidrogênio de Baixa Emissão de Carbono", echo=FALSE, message=FALSE, warning=FALSE}
+```{r usohidrogenio, echo=FALSE, fig.cap="Proporção dos Usos Finais do H₂ nos Projetos de Produção de Hidrogênio de Baixa Emissão de Carbono", message=FALSE, warning=FALSE}
 usos_graf
 ```
 
@@ -462,10 +462,10 @@ Por meio dos controles interativos disponíveis, recomenda-se que o leitor reali
 A utilização dessa ferramenta deve ser entendida como um exercício aplicado de análise de viabilidade financeira, permitindo avaliar como diferentes configurações tecnológicas e contextos macroeconômicos podem influenciar diretamente a competitividade econômica da produção de hidrogênio verde.
 
 ```{=html}
-<iframe 
+<iframe
   src="https://profvictorunifei.shinyapps.io/calculadora_lcoh/"
-  width="100%" 
-  height="800px" 
+  width="100%"
+  height="800px"
   style="border:none;">
 </iframe>
 ```

@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.22)  3 FEB 2026 21:44
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.9)  9 MAR 2026 22:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Engenharia_Economica_H2.tex
 (./Engenharia_Economica_H2.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+L3 programming layer <2026-01-19>
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
@@ -115,7 +115,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-11-06 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader) 
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
 \g__graphics_track_int=\count292
@@ -422,7 +422,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
+Package: geometry 2026/03/07 v6.0 Page Geometry
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
@@ -462,7 +462,7 @@ Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 )) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -482,7 +482,7 @@ Package pdftexcmds Info: \pdfdraftmode not found.
 )) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
@@ -498,28 +498,28 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count327
 \Hy@pagecounter=\count328
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 ) (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count329
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count330
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen196
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -529,20 +529,20 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count331
 \Field@Width=\dimen197
 \Fld@charsize=\dimen198
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
 \Hy@abspage=\count332
 \c@Item=\count333
 \c@Hfootnote=\count334
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (c:/Users/victo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
+File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
 \pdfm@box=\box65
 \c@Hy@AnnotLevel=\count335
 \HyField@AnnotCount=\count336
@@ -747,62 +747,444 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-] [2
-
-] (./Engenharia_Economica_H2.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 3.
-)
-\tf@toc=\write3
-\openout3 = `Engenharia_Economica_H2.toc'.
-
-[3] [4
-
 ]
 Chapter 1.
-[5] [6
+Missing character: There is no ₂ ("2082) in font ec-lmbx12!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `ipcc_2022' on page 2 undefined on input line 129.
+
+
+Package natbib Warning: Citation `acordo_paris' on page 2 undefined on input line 129.
+
+
+Package natbib Warning: Citation `fan_2022' on page 2 undefined on input line 129.
+
+
+Package natbib Warning: Citation `ipcc_2022' on page 2 undefined on input line 131.
+
+
+Package natbib Warning: Citation `acordo_paris' on page 2 undefined on input line 131.
+
+
+Package natbib Warning: Citation `fan_2022' on page 2 undefined on input line 131.
+
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `ipcc_2022' on page 2 undefined on input line 133.
+
+
+Package natbib Warning: Citation `acordo_paris' on page 2 undefined on input line 133.
+
+
+Package natbib Warning: Citation `fan_2022' on page 2 undefined on input line 133.
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 135.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 135.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 135.
+
+Package natbib Warning: Citation `moreira_2025' on page 2 undefined on input line 135.
+
+
+Package natbib Warning: Citation `moreira_2025' on page 2 undefined on input line 135.
+
+
+Package natbib Warning: Citation `moreira_2025' on page 2 undefined on input line 135.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 2 undefined on input line 135.
+
+
+Package natbib Warning: Citation `moreira_2025' on page 2 undefined on input line 137.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 2 undefined on input line 137.
+
+
+Package natbib Warning: Citation `moreira_2025' on page 2 undefined on input line 137.
+
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `bhandari_2021' on page 2 undefined on input line 151.
+
+
+Package natbib Warning: Citation `correa_2022' on page 2 undefined on input line 151.
+
+[2
 
 ]
+
+Package natbib Warning: Citation `gallardo_2021' on page 3 undefined on input line 153.
+
+
+Package natbib Warning: Citation `fan_2022' on page 3 undefined on input line 153.
+
+
+Package natbib Warning: Citation `alliance_2019' on page 3 undefined on input line 153.
+
+
+LaTeX Warning: Reference `fig:podercalorifico' on page 3 undefined on input line 153.
+
+
+Package natbib Warning: Citation `moreira_2025' on page 3 undefined on input line 153.
+
+
+Package natbib Warning: Citation `bhandari_2021' on page 3 undefined on input line 155.
+
+
+Package natbib Warning: Citation `correa_2022' on page 3 undefined on input line 155.
+
+
+Package natbib Warning: Citation `bhandari_2021' on page 3 undefined on input line 157.
+
+
+Package natbib Warning: Citation `correa_2022' on page 3 undefined on input line 157.
+
+
+Package natbib Warning: Citation `bhandari_2021' on page 3 undefined on input line 161.
+
+
+Package natbib Warning: Citation `bhandari_2021' on page 3 undefined on input line 163.
+
+
+Package natbib Warning: Citation `bhandari_2021' on page 3 undefined on input line 165.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Missing character: There is no ₂ ("2082) in font ec-lmro10!
+[3]
+
+Package natbib Warning: Citation `gallardo_2021' on page 4 undefined on input line 167.
+
+
+Package natbib Warning: Citation `park_2024' on page 4 undefined on input line 169.
+
+
+Package natbib Warning: Citation `gallardo_2021' on page 4 undefined on input line 171.
+
+
+Package natbib Warning: Citation `correa_2022' on page 4 undefined on input line 173.
+
+
+Package natbib Warning: Citation `correa_2022' on page 4 undefined on input line 173.
+
+
+Package natbib Warning: Citation `park_2024' on page 4 undefined on input line 173.
+
+
+Package natbib Warning: Citation `correa_2022' on page 4 undefined on input line 175.
+
+
+Package natbib Warning: Citation `hurtubia_2021' on page 4 undefined on input line 177.
+
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `rezaei_2022' on page 4 undefined on input line 177.
+
+
+Package natbib Warning: Citation `hurtubia_2021' on page 4 undefined on input line 177.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[4]
+
+Package natbib Warning: Citation `hurtubia_2021' on page 5 undefined on input line 179.
+
+
+Package natbib Warning: Citation `rezaei_2022' on page 5 undefined on input line 181.
+
+
+Package natbib Warning: Citation `fan_2022' on page 5 undefined on input line 181.
+
+
+LaTeX Warning: Reference `fig:emissao' on page 5 undefined on input line 181.
+
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `hurtubia_2021' on page 5 undefined on input line 183.
+
+
+Package natbib Warning: Citation `correa_2022' on page 5 undefined on input line 183.
+
+
+Package natbib Warning: Citation `tebibel_2021' on page 5 undefined on input line 183.
+
+
+Package natbib Warning: Citation `tebibel_2021' on page 5 undefined on input line 185.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 5 undefined on input line 191.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 5 undefined on input line 193.
+
+
+LaTeX Warning: Reference `tab:eletrolisadores' on page 5 undefined on input line 193.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Missing character: There is no ₂ ("2082) in font ec-lmro10!
+[5]
+
+Package natbib Warning: Citation `hurtubia_2021' on page 6 undefined on input line 195.
+
+
+Package natbib Warning: Citation `hurtubia_2021' on page 6 undefined on input line 197.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 6 undefined on input line 199.
+
+
+Package natbib Warning: Citation `gallardo_2021' on page 6 undefined on input line 201.
+
+
+Package natbib Warning: Citation `gallardo_2021' on page 6 undefined on input line 203.
+
+
+Package natbib Warning: Citation `park_2024' on page 6 undefined on input line 205.
+
+
+Package natbib Warning: Citation `nasser_2023' on page 6 undefined on input line 207.
+
+
+Package natbib Warning: Citation `ginsberg_2022' on page 6 undefined on input line 209.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[6]
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+Missing character: There is no ⚠ ("26A0) in font ec-lmr10!
+Missing character: There is no ️ ("FE0F) in font ec-lmr10!
+
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+[7] [8]
 Chapter 2.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[7] [8]
-Chapter 3.
-Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
 [9
 
-] [10
-
 ]
-Chapter 4.
-(./Engenharia_Economica_H2.bbl [11] [12
 
-]
-Underfull \hbox (badness 2894) in paragraph at lines 9--14
-[]\T1/lmr/m/n/10 Alexandre As-saf Neto.  \T1/lmr/m/it/10 Matemática fi-nan-ceira: edição uni-ver-sitária\T1/lmr/m/n/10 .  GEN At-las, 1 edi-
+Package natbib Warning: Citation `assaf_2017' on page 10 undefined on input line 292.
+
+
+Package natbib Warning: Citation `assaf_2017' on page 10 undefined on input line 294.
+
+
+Package natbib Warning: Citation `krugman_2016' on page 10 undefined on input line 296.
+
+
+LaTeX Warning: Reference `fig:ipca' on page 10 undefined on input line 298.
+
+[10]
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11]
+
+Package natbib Warning: Citation `hawawini_2009' on page 12 undefined on input line 342.
+
+
+Package natbib Warning: Citation `hawawini_2009' on page 12 undefined on input line 344.
+
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ⟹ ("27F9) in font ecrm1000!
+Missing character: There is no ⟹ ("27F9) in font ecrm1000!
+Missing character: There is no á ("E1) in font lmmi10!
+Missing character: There is no ⟹ ("27F9) in font ecrm1000!
+Missing character: There is no á ("E1) in font lmmi10!
+
+Underfull \vbox (badness 4303) has occurred while \output is active []
+
+[12]
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ⚠ ("26A0) in font ec-lmr10!
+Missing character: There is no ️ ("FE0F) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+[13]
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[14]
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ⚠ ("26A0) in font ec-lmr10!
+Missing character: There is no ️ ("FE0F) in font ec-lmr10!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+[15]
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[16]
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+
+LaTeX Warning: Reference `fig:cambio' on page 17 undefined on input line 511.
+
+
+Package natbib Warning: Citation `bcb_cambio' on page 17 undefined on input line 511.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[17]
+
+LaTeX Warning: Reference `tab:fc' on page 18 undefined on input line 525.
+
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--535
+
  []
 
-) [13] (./Engenharia_Economica_H2.aux)
+
+Underfull \vbox (badness 1742) has occurred while \output is active []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 537--539
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--545
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 547--549
+
+ []
+
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+
+Package natbib Warning: Citation `brasil_lei_14948' on page 19 undefined on input line 560.
+
+[19]
+Missing character: There is no 📖 ("1F4D6) in font ec-lmr10!
+Missing character: There is no 💡 ("1F4A1) in font ec-lmr10!
+Missing character: There is no ⚠ ("26A0) in font ec-lmr10!
+Missing character: There is no ️ ("FE0F) in font ec-lmr10!
+[20] [21]
+Chapter 3.
+Missing character: There is no ₂ ("2082) in font ec-lmbx12!
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 22 undefined on input line 600.
+
+
+LaTeX Warning: Reference `fig:mapapaises' on page 22 undefined on input line 606.
+
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 22 undefined on input line 606.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[22
+
+]
+
+LaTeX Warning: Reference `fig:tempotec' on page 23 undefined on input line 616.
+
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 23 undefined on input line 616.
+
+
+LaTeX Warning: Reference `fig:tecdetalhe' on page 23 undefined on input line 628.
+
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 23 undefined on input line 628.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Missing character: There is no ₂ ("2082) in font ec-lmro10!
+[23]
+
+LaTeX Warning: Reference `tab:capacidades' on page 24 undefined on input line 638.
+
+Missing character: There is no ₂ ("2082) in font ec-lmr10!
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 24 undefined on input line 638.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[24]
+
+LaTeX Warning: Reference `fig:fonteenergia' on page 25 undefined on input line 656.
+
+
+Package natbib Warning: Citation `iea_h2_production_2025' on page 25 undefined on input line 656.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Missing character: There is no ₂ ("2082) in font ec-lmro10!
+[25]
+Missing character: There is no ₂ ("2082) in font ec-lmbx12!
+
+LaTeX Warning: Reference `fig:usohidrogenio' on page 26 undefined on input line 668.
+
+[26] [27]
+
+Package natbib Warning: There were undefined citations.
+
+[28] (./Engenharia_Economica_H2.aux)
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-06>
+L3 programming layer <2026-01-19>
  ***********
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 17754 strings out of 470179
- 321681 string characters out of 5476520
- 798639 words of memory out of 5000000
- 46115 multiletter control sequences out of 15000+600000
- 682368 words of font info for 90 fonts, out of 8000000 for 9000
+ 17779 strings out of 470175
+ 321910 string characters out of 5476480
+ 802012 words of memory out of 5000000
+ 46146 multiletter control sequences out of 15000+600000
+ 694700 words of font info for 95 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 90i,6n,113p,741b,362s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,8n,113p,1293b,409s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Engenharia_Economica_H2.pdf (13 pages).
+Output written on Engenharia_Economica_H2.pdf (28 pages).

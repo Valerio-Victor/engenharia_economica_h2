@@ -6,7 +6,8 @@ site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["packages.bib"]
 csl: "abnt_numerico.csl"
-link-citations: true
+link-citations: yes
+classoption: openany
 github-repo: rstudio/bookdown-demo
 ---
 
@@ -34,7 +35,7 @@ Obviamente, não é apenas pela grande disponibilidade de hidrogênio que se ava
 
 Assim, pode-se observar que o hidrogênio possui o potencial de viabilizar a meta de neutralidade de carbono em setores de difícil descarbonização e eletrificação, como calor e indústria, podendo revitalizar essas atividades [@gallardo_2021; @fan_2022]. Por exemplo, segundo @alliance_2019, o poder calorífico do hidrogênio é de aproximadamente 140,9 MJ/kg, cerca de três a quatro vezes maior quando comparado à mesma massa de outros combustíveis fósseis. Uma síntese comparativa é apresentada na \@ref(fig:podercalorifico)  com base em @moreira_2025.
 
-```{r podercalorifico, fig.cap="Comparação entre Densidades Energéticas", echo=FALSE, message=FALSE, warning=FALSE}
+```{r podercalorifico, echo=FALSE, fig.cap="Comparação entre Densidades Energéticas", message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 library(ggplot2)
 
@@ -104,7 +105,7 @@ Apesar da reconhecida sinergia entre a expansão das fontes renováveis, a neces
 
 Ainda que a captura e o sequestro de carbono associados às rotas fósseis sejam tecnicamente viáveis, há evidências de que, em determinadas circunstâncias, as emissões totais da produção do hidrogênio a partir dessas rotas, chamado hidrogênio azul, podem superar aquelas provenientes da combustão direta do combustível original [@rezaei_2022]. Com base em @fan_2022, na figura \@ref(fig:emissao) são apresentadas estimativas de emissão de CO₂ por matéria-prima utilizada para a produção.
 
-```{r emissao, fig.cap="Emissão de CO₂ na Produção de Hidrogênio", echo=FALSE, message=FALSE, warning=FALSE}
+```{r emissao, echo=FALSE, fig.cap="Emissão de CO₂ na Produção de Hidrogênio", message=FALSE, warning=FALSE}
 library(magrittr, include.only = '%>%')
 library(ggplot2)
 
@@ -143,7 +144,7 @@ Do ponto de vista tecnológico, os eletrolisadores evoluíram significativamente
 
 Por sua vez, a célula eletrolítica de óxido sólido (SOEC) constitui um exemplo de eletrólise em alta temperatura, demandando vapor em faixas entre 600 °C e 1000 °C. Essa alternativa apresenta ganhos de eficiência superiores aos observados nos demais sistemas. Uma síntese comparativa de algus parâmetros técnicos organizada por @nasser_2023 é apresentada na \@ref(tab:eletrolisadores) a seguir.
 
-```{r eletrolisadores, tab.cap="Parâmetros Técnicos dos eletrolisadores Eletrolisadores", echo=FALSE, message=FALSE, warning=FALSE}
+```{r eletrolisadores, echo=FALSE, message=FALSE, warning=FALSE, tab.cap="Parâmetros Técnicos dos eletrolisadores Eletrolisadores"}
 library(magrittr, include.only = '%>%')
 library(gt)
 
@@ -239,7 +240,7 @@ Ressalta-se que ao longo do livro, diversos levantamentos são apresentados por 
 
 Esta apostila está licenciada sob a licença Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
 knitr::include_graphics("licenca.png")
 ```
 
